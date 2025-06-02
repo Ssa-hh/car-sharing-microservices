@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Ssa.CarSharing.Common.Application\Ssa.CarSharing.Common.Application.csproj" />
+    <ProjectReference Include="..\Ssa.CarSharing.Users.Domain\Ssa.CarSharing.Users.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Users\Queries\" />
+  </ItemGroup>
+
 </Project>

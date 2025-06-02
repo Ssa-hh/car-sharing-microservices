@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Ssa.CarSharing.Domain\Ssa.CarSharing.Common.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ssa.CarSharing.Domain\Ssa.CarSharing.Common.Domain.csproj" />
   </ItemGroup>
 
 </Project>
