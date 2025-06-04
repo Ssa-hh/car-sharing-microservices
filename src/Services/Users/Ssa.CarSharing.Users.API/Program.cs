@@ -1,8 +1,10 @@
 
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Ssa.CarSharing.Users.API.Endpoints;
+using Ssa.CarSharing.Users.Application;
 using Ssa.CarSharing.Users.infrastructure;
 using Ssa.CarSharing.Users.infrastructure.Database.Extensions;
-using Ssa.CarSharing.Users.Application;
-using Ssa.CarSharing.Users.API.Endpoints;
 namespace Ssa.CarSharing.Users.API;
 
 public class Program
@@ -16,16 +18,14 @@ public class Program
         // Aspire client configuration
         builder.AddNpgsqlDataSource(postgresConnectionName);
 
-        builder.Services.AddInfrastructure(builder.Configuration, postgresConnectionName);
         builder.Services.AddApplication();
 
-        // Add services to the container.
-        builder.Services.AddAuthorization();
+        builder.Services.AddInfrastructure(builder.Configuration, postgresConnectionName);
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
-        
+
 
         var app = builder.Build();
 

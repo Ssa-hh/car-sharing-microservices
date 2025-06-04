@@ -8,5 +8,5 @@ using System.Windows.Input;
 
 namespace Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser
 {
-    public record RegisterUserCommand(string FirstName, string LastName, string Email) : ICommand<Guid>;
+    public record RegisterUserCommand(string FirstName, string LastName, string Email, string Password) : ICommand<Guid>;
 }

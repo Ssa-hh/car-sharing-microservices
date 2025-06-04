@@ -23,6 +23,8 @@ namespace Ssa.CarSharing.Users.Domain.Users
 
         public string Email { get; private set; }
 
+        public string IdentityId { get; set; }
+
         public static User  Create(string firstName, string lastName, string email)
         {
             if(string.IsNullOrWhiteSpace(firstName)) 
