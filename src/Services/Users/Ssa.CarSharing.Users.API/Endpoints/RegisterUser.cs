@@ -21,15 +21,6 @@ namespace Ssa.CarSharing.Users.API.Endpoints
             .WithTags("Users")
             .Produces<Guid>(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status400BadRequest);
-
-            app.MapGet("/temp", async () =>
-            {
-                return Results.Ok("Somme text");
-            })
-            .RequireAuthorization()
-            .WithName("Temp")
-            .WithTags("Temp")
-            .Produces<Guid>(StatusCodes.Status200OK);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Ssa.CarSharing.Users.infrastructure.Authentication
     internal class AuthenticationService : IAuthenticationService
     {
         private readonly HttpClient _httpClient;
-        private readonly JwtService _jwtService;
+        private readonly IJwtService _jwtService;
 
-        public AuthenticationService(HttpClient httpClient, JwtService jwtService)
+        public AuthenticationService(HttpClient httpClient, IJwtService jwtService)
         {
             _httpClient = httpClient;
             _jwtService = jwtService;

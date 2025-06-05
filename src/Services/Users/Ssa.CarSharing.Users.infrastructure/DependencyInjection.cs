@@ -46,7 +46,7 @@ namespace Ssa.CarSharing.Users.infrastructure
         {
             KeycloakOptions keycloakOptions;
 
-            services.AddScoped<JwtService>();
+            services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.Configure<KeycloakOptions>(configuration.GetSection("KeycloakSettings"));
 
@@ -56,7 +56,7 @@ namespace Ssa.CarSharing.Users.infrastructure
                 httpClient.BaseAddress = new Uri(keycloakOptions.AdminUrl);
             });
 
-            services.AddHttpClient<JwtService>(httpClient =>
+            services.AddHttpClient<IJwtService, JwtService>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(keycloakOptions.TokenUrl);
             });

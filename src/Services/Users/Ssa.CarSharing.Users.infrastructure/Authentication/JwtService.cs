@@ -11,7 +11,7 @@ using System.Net.Http.Json;
 
 namespace Ssa.CarSharing.Users.infrastructure.Authentication
 {
-    internal class JwtService
+    internal class JwtService : IJwtService
     {
         private static readonly Error AuthenticationFailed = new("Keycloak.AuthenticationFailed", "Failed to get access token due to authentication failure", ErrorType.Failure);
 
