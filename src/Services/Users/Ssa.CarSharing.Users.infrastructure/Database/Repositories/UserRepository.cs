@@ -31,5 +31,10 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
         {
             await _context.Users.AddAsync(user);
         }
+
+        public async Task<bool> ExistsAsync(string email)
+        {
+            return await _context.Users.AnyAsync(u => u.Email == email);
+        }
     }
 }

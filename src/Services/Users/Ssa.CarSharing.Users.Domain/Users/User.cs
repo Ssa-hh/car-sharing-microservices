@@ -27,6 +27,7 @@ namespace Ssa.CarSharing.Users.Domain.Users
 
         public static User  Create(string firstName, string lastName, string email)
         {
+            
             if(string.IsNullOrWhiteSpace(firstName)) 
                 throw new ArgumentNullException(nameof(firstName));
             if(string.IsNullOrWhiteSpace(lastName)) 

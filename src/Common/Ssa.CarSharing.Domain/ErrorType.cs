@@ -10,6 +10,7 @@ namespace Ssa.CarSharing.Common.Domain
     {
         Failure = 0,
         Validation = 1,
-        NotFound = 2
+        NotFound = 2,
+        Conflict = 3
     }
 }

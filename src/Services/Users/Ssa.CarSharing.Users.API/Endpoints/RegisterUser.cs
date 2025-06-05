@@ -1,6 +1,7 @@
 ﻿using Carter;
 using MediatR;
 using Ssa.CarSharing.Common.Domain;
+using Ssa.CarSharing.Common.Presentation.Helpers;
 using Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser;
 
 namespace Ssa.CarSharing.Users.API.Endpoints
@@ -15,7 +16,7 @@ namespace Ssa.CarSharing.Users.API.Endpoints
             {
                 Result<Guid> result = await sender.Send(new RegisterUserCommand(request.FirstName, request.LastName, request.Email, request.Password));
 
-                return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);
+                return result.IsSuccess ? Results.Ok(result.Value) : ApiResults.Problem(result);
             })
             .WithName("RegisterUser")
             .WithTags("Users")

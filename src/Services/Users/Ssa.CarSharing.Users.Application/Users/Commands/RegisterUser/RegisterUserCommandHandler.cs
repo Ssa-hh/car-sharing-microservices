@@ -24,6 +24,9 @@ namespace Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser
         }
         public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
+            if(await _userRepository.ExistsAsync(command.Email))
+                return Result.Failure<Guid>(Error.Conflict("User.Conflict", "User with this email already exists."));
+
             User user = User.Create(command.FirstName, command.LastName, command.Email);
 
             string identityId = await _authenticationService.RegisterUser(user, command.Password, cancellationToken);

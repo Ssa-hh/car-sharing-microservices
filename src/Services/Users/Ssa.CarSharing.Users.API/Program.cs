@@ -2,6 +2,7 @@
 using Carter;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Ssa.CarSharing.Common.Presentation.Middlewares;
 using Ssa.CarSharing.Users.API.Endpoints;
 using Ssa.CarSharing.Users.Application;
 using Ssa.CarSharing.Users.infrastructure;
@@ -41,6 +42,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseMiddleware<CustomExceptionHandler>();
 
         app.UseAuthorization();
 

@@ -13,7 +13,7 @@ public class LogInUser : ICarterModule
         app.MapPost("/users/login", async (LogInUserRequest request, ISender sender) =>
         {
             Result<AccessTokenResponse> result = await sender.Send(new LogInUserCommand(request.Email, request.Password));
-            return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);
+            return result.IsSuccess ? Results.Ok(result.Value) : Results.Unauthorized();
         })
         .WithName("LogInUser")
         .WithTags("Users")

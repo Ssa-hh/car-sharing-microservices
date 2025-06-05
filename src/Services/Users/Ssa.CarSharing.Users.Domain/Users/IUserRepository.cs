@@ -11,10 +11,10 @@ namespace Ssa.CarSharing.Users.Domain.Users
         Task<User?> GetByIdAsync(Guid id);
         Task<User?> GetByEmailAsync(string email);
         Task AddAsync(User user);
+        Task<bool> ExistsAsync(string email);
         /*
         Task UpdateAsync(User user);
         Task DeleteAsync(Guid id);
-        Task<bool> ExistsAsync(Guid id);
         Task<bool> ExistsByEmailAsync(string email);
         Task<IEnumerable<User>> GetAllAsync();
         */

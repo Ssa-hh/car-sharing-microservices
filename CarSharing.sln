@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Common.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Common.Infrastructure", "src\Common\Ssa.CarSharing.Common.Infrastructure\Ssa.CarSharing.Common.Infrastructure.csproj", "{75410130-66A3-41CE-8958-F44E3D39ADA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Common.Presentation", "src\Common\Ssa.CarSharing.Common.Presentation\Ssa.CarSharing.Common.Presentation.csproj", "{944CD618-4106-4293-9DA4-64BAF28414E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{75410130-66A3-41CE-8958-F44E3D39ADA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75410130-66A3-41CE-8958-F44E3D39ADA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75410130-66A3-41CE-8958-F44E3D39ADA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944CD618-4106-4293-9DA4-64BAF28414E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944CD618-4106-4293-9DA4-64BAF28414E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944CD618-4106-4293-9DA4-64BAF28414E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944CD618-4106-4293-9DA4-64BAF28414E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{E237B142-5D8F-4400-BF60-5BA7ED3C7770} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
 		{3905BF29-16C5-4E4F-ABB2-D5D4C74A9727} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
 		{75410130-66A3-41CE-8958-F44E3D39ADA0} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
+		{944CD618-4106-4293-9DA4-64BAF28414E0} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BECCE144-1C06-49F4-9E55-9AD5631BF6E4}
