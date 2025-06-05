@@ -28,7 +28,7 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
-
+        builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
@@ -38,6 +38,9 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.ApplyMigration();
         }
 
