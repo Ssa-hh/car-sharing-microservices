@@ -71,6 +71,10 @@ namespace Ssa.CarSharing.Users.infrastructure
                 });
 
             services.AddAuthorization();
+
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IUserContext, UserContext>();
         }
   }
 }

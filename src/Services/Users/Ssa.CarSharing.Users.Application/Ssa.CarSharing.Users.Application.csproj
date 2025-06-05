@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Ssa.CarSharing.Users.Domain\Ssa.CarSharing.Users.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\Queries\" />
-  </ItemGroup>
-
 </Project>

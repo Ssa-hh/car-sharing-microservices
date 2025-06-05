@@ -1,4 +1,5 @@
 
+using Carter;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Ssa.CarSharing.Users.API.Endpoints;
@@ -21,6 +22,7 @@ public class Program
         builder.Services.AddApplication();
 
         builder.Services.AddInfrastructure(builder.Configuration, postgresConnectionName);
+        builder.Services.AddApi();
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
@@ -42,7 +44,7 @@ public class Program
 
         app.UseAuthorization();
 
-        app.MapEndpoint();
+        app.MapCarter();
 
         app.Run();
     }

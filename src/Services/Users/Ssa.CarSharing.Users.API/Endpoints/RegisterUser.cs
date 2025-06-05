@@ -1,13 +1,15 @@
-﻿using MediatR;
+﻿using Carter;
+using MediatR;
 using Ssa.CarSharing.Common.Domain;
 using Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser;
 
 namespace Ssa.CarSharing.Users.API.Endpoints
 {
-    internal static class RegisterUser
+    public class RegisterUser :ICarterModule
     {
         internal record RegisterUserRequest(string FirstName, string LastName, string Email, string Password);
-        public static void MapEndpoint(this IEndpointRouteBuilder app)
+
+        public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPost("/users/register", async (RegisterUserRequest request, ISender sender) =>
             {
@@ -19,6 +21,15 @@ namespace Ssa.CarSharing.Users.API.Endpoints
             .WithTags("Users")
             .Produces<Guid>(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status400BadRequest);
+
+            app.MapGet("/temp", async () =>
+            {
+                return Results.Ok("Somme text");
+            })
+            .RequireAuthorization()
+            .WithName("Temp")
+            .WithTags("Temp")
+            .Produces<Guid>(StatusCodes.Status200OK);
         }
     }
 }
