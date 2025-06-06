@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ssa.CarSharing.Users.Application.Users.LogInUser;
+namespace Ssa.CarSharing.Users.Application.Users.Commands.LogInUser;
 
 internal class LogInUserCommandValidator : AbstractValidator<LogInUserCommand>
 {

@@ -1,7 +1,7 @@
 ﻿using Carter;
 using MediatR;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Users.Application.Users.LogInUser;
+using Ssa.CarSharing.Users.Application.Users.Commands.LogInUser;
 
 namespace Ssa.CarSharing.Users.API.Endpoints;
 
