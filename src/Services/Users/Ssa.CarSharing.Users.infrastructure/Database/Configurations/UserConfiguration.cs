@@ -22,6 +22,13 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Configurations
 
             builder.HasIndex(u => u.Email)
                 .IsUnique();
+
+            // builder.Property(u => u.IdentityId).IsRequired();
+
+            builder.HasMany(u => u.Cars)
+                .WithOne(c => c.Owner)
+                .HasForeignKey(c => c.OwnerId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

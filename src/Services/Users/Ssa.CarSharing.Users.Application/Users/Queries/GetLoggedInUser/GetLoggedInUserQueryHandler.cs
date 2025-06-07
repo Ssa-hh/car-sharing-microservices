@@ -27,7 +27,7 @@ namespace Ssa.CarSharing.Users.Application.Users.Queries.GetLoggedInUser
             User? user = await _userRepository.GetByEmailAsync(_userContext.UserEmail);
 
             if (user == null) 
-                return Result.Failure<UserResponse>(Error.NotFound("Users.NotFound", "The current user not found"));
+                return Result.Failure<UserResponse>(Error.NotFound("User.NotFound", "The current user not found"));
 
             return new Result<UserResponse>(new UserResponse { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email }, true, Error.None);
         }

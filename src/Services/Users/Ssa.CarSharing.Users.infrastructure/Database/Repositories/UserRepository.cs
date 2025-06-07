@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ssa.CarSharing.Users.Domain.Users;
+using Ssa.CarSharing.Users.Domain.Users.Cars;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,14 +19,22 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
             _context = context;
         }
 
-        public async Task<User?> GetByIdAsync(Guid id)
+        public async Task<User?> GetByIdAsync(Guid id, bool withCars = false)
         {
-            return await _context.Users.FindAsync(id);
+            var query = _context.Users.AsQueryable();
+            if (withCars)
+                query = query.Include(u => u.Cars);
+
+            return await query.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<User?> GetByEmailAsync(string email)
+        public async Task<User?> GetByEmailAsync(string email, bool withCars = false)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var query = _context.Users.AsQueryable();
+            if (withCars)
+                query = query.Include(u => u.Cars);
+
+            return await query.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task AddAsync(User user)
@@ -35,6 +45,13 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
         public async Task<bool> ExistsAsync(string email)
         {
             return await _context.Users.AnyAsync(u => u.Email == email);
+        }
+
+        public Task AddCarAsync(Car car)
+        {
+            _context.Entry(car).State = EntityState.Added;
+
+            return Task.CompletedTask;
         }
     }
 }
