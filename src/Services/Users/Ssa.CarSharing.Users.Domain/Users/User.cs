@@ -56,6 +56,8 @@ namespace Ssa.CarSharing.Users.Domain.Users
             Car car = Car.Create(brand, model, color, ownerId);
             _cars.Add(car);
 
+            AddDomainEvent(new CarAddedToUserDomainEvent(Id, car.Id));
+
             return car;
         }
     }
