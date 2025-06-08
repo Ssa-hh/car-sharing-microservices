@@ -26,7 +26,7 @@ public class Car : Entity
 
     public Guid OwnerId { get; private set; }
 
-    public User Owner { get; private set; }
+    public User? Owner { get; private set; }
 
     public void SetColor(Color color)
     {

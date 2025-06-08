@@ -59,7 +59,7 @@ namespace Ssa.CarSharing.Users.Domain.Users
             return car;
         }
 
-        public Result<Car> RemoveCar(Guid carId)
+        public Result RemoveCar(Guid carId)
         {
             var carToRemove = Cars.FirstOrDefault( c=> c.Id == carId);
 
@@ -68,7 +68,7 @@ namespace Ssa.CarSharing.Users.Domain.Users
 
             _cars.Remove(carToRemove);
 
-            return Result.Success<Car>(carToRemove);
+            return Result.Success();
         }
 
         public Result UpdateCar(Guid carId, string brand, string model, Color color)

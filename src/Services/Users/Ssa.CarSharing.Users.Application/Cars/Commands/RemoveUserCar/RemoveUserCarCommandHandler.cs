@@ -29,10 +29,10 @@ internal class RemoveUserCarCommandHandler : ICommandHandler<RemoveUserCarComman
         if (currentUser == null)
             return Result.Failure(Error.NotFound("User.NotFound", "The current user not found"));
 
-        Result<Car> carToRemove = currentUser.RemoveCar(command.CarId);
+        Result result = currentUser.RemoveCar(command.CarId);
 
-        if(carToRemove.IsFailure)
-            return Result.Failure(carToRemove.Error);
+        if (result.IsFailure)
+            return result;
 
         await _unitOfWork.SaveChangesAsync();
 
