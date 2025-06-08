@@ -15,12 +15,15 @@ var keycloakUserName = builder.AddParameter("keycloak-user-name");
 var keycloakPassword = builder.AddParameter("keycloak-password", secret: true);
 var keycloak = builder.AddKeycloak("keycloak", 8001, keycloakUserName, keycloakPassword)
     .WithDataVolume()
-    .WithRealmImport("./carsharing-realms.json");
+    //.WithRealmImport("./carsharing-realms.json")
+    ;
 
 builder.AddProject<Projects.Ssa_CarSharing_Users_API>("ssa-carsharing-users-api")
     .WithReference(postgresDb)
     .WithReference(keycloak)
     .WaitFor(postgresDb)
     .WaitFor(keycloak);
+
+builder.AddProject<Projects.Ssa_CarSharing_Rides_Api>("ssa-carsharing-rides-api");
 
 builder.Build().Run();

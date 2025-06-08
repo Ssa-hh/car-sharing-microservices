@@ -36,6 +36,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Common.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Common.Presentation", "src\Common\Ssa.CarSharing.Common.Presentation\Ssa.CarSharing.Common.Presentation.csproj", "{944CD618-4106-4293-9DA4-64BAF28414E0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rides", "Rides", "{F1EEB07C-D468-434B-BE71-F5C218604EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Rides.Application", "src\Services\Rides\Ssa.CarSharing.Rides.Application\Ssa.CarSharing.Rides.Application.csproj", "{17376A61-32E0-4258-9A0E-FCA5B95A36FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Rides.Domain", "src\Services\Rides\Ssa.CarSharing.Rides.Domain\Ssa.CarSharing.Rides.Domain.csproj", "{4F6B009C-F09F-49F9-89A8-E25F55B605C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Rides.Infrastructure", "src\Services\Rides\Ssa.CarSharing.Rides.Infrastructure\Ssa.CarSharing.Rides.Infrastructure.csproj", "{D5206502-2639-4B7A-B1A0-E2B3E95BB311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ssa.CarSharing.Rides.Api", "src\Services\Rides\Ssa.CarSharing.Rides.Api\Ssa.CarSharing.Rides.Api.csproj", "{4D55453E-52C0-A141-AB41-192902B87CBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +92,22 @@ Global
 		{944CD618-4106-4293-9DA4-64BAF28414E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{944CD618-4106-4293-9DA4-64BAF28414E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{944CD618-4106-4293-9DA4-64BAF28414E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17376A61-32E0-4258-9A0E-FCA5B95A36FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17376A61-32E0-4258-9A0E-FCA5B95A36FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17376A61-32E0-4258-9A0E-FCA5B95A36FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17376A61-32E0-4258-9A0E-FCA5B95A36FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6B009C-F09F-49F9-89A8-E25F55B605C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6B009C-F09F-49F9-89A8-E25F55B605C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6B009C-F09F-49F9-89A8-E25F55B605C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6B009C-F09F-49F9-89A8-E25F55B605C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5206502-2639-4B7A-B1A0-E2B3E95BB311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5206502-2639-4B7A-B1A0-E2B3E95BB311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5206502-2639-4B7A-B1A0-E2B3E95BB311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5206502-2639-4B7A-B1A0-E2B3E95BB311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D55453E-52C0-A141-AB41-192902B87CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D55453E-52C0-A141-AB41-192902B87CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D55453E-52C0-A141-AB41-192902B87CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D55453E-52C0-A141-AB41-192902B87CBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +127,11 @@ Global
 		{3905BF29-16C5-4E4F-ABB2-D5D4C74A9727} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
 		{75410130-66A3-41CE-8958-F44E3D39ADA0} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
 		{944CD618-4106-4293-9DA4-64BAF28414E0} = {473A1CA0-6F40-4312-9B85-F409FD8CC277}
+		{F1EEB07C-D468-434B-BE71-F5C218604EBF} = {B330A734-9FB1-431E-9E9A-6197EB95C8FC}
+		{17376A61-32E0-4258-9A0E-FCA5B95A36FC} = {F1EEB07C-D468-434B-BE71-F5C218604EBF}
+		{4F6B009C-F09F-49F9-89A8-E25F55B605C3} = {F1EEB07C-D468-434B-BE71-F5C218604EBF}
+		{D5206502-2639-4B7A-B1A0-E2B3E95BB311} = {F1EEB07C-D468-434B-BE71-F5C218604EBF}
+		{4D55453E-52C0-A141-AB41-192902B87CBE} = {F1EEB07C-D468-434B-BE71-F5C218604EBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BECCE144-1C06-49F4-9E55-9AD5631BF6E4}
