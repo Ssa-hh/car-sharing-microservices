@@ -3,9 +3,10 @@ using MediatR;
 using Ssa.CarSharing.Common.Domain;
 using Ssa.CarSharing.Common.Presentation.Helpers;
 using Ssa.CarSharing.Users.Application.Cars.Commands;
+using Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser;
 using System.Drawing;
 
-namespace Ssa.CarSharing.Users.API.Endpoints;
+namespace Ssa.CarSharing.Users.API.Endpoints.Cars;
 
 public class AddCarToUser : ICarterModule
 {

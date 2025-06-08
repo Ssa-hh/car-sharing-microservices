@@ -6,6 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ssa.CarSharing.Users.Application.Cars.Commands;
+namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser;
 
 public record AddCarToUserCommand(string Brand, string Model, string ColorHexCode) : ICommand;

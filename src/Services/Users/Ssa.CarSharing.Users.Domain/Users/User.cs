@@ -56,9 +56,19 @@ namespace Ssa.CarSharing.Users.Domain.Users
             Car car = Car.Create(brand, model, color, ownerId);
             _cars.Add(car);
 
-            AddDomainEvent(new CarAddedToUserDomainEvent(Id, car.Id));
-
             return car;
+        }
+
+        public Result<Car> RemoveCar(Guid carId)
+        {
+            var carToRemove = Cars.FirstOrDefault( c=> c.Id == carId);
+
+            if (carToRemove == null)
+                return Result.Failure<Car>(Error.NotFound("Car.NotFound", "The specified car does not exist or does not belong to this user"));
+
+            _cars.Remove(carToRemove);
+
+            return Result.Success<Car>(carToRemove);
         }
     }
 }

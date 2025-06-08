@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ssa.CarSharing.Users.Application.Cars.Commands
+namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
 {
     internal class AddCarToUserCommandValidator : AbstractValidator<AddCarToUserCommand>
     {

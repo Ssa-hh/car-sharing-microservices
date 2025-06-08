@@ -7,7 +7,7 @@ using Ssa.CarSharing.Users.Application.Users.Queries.GetLoggedInUser;
 using Ssa.CarSharing.Users.Domain.Users;
 using System.Drawing;
 
-namespace Ssa.CarSharing.Users.Application.Cars.Commands
+namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
 {
     internal class AddCarToUserCommandHandler : ICommandHandler<AddCarToUserCommand>
     {
