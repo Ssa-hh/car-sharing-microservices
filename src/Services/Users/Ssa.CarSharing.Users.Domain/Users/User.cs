@@ -64,11 +64,25 @@ namespace Ssa.CarSharing.Users.Domain.Users
             var carToRemove = Cars.FirstOrDefault( c=> c.Id == carId);
 
             if (carToRemove == null)
-                return Result.Failure<Car>(Error.NotFound("Car.NotFound", "The specified car does not exist or does not belong to this user"));
+                return Result.Failure<Car>(Error.NotFound("Cars.NotFound", $"The car with id equal to {carId} does not exist or does not belong to this user."));
 
             _cars.Remove(carToRemove);
 
             return Result.Success<Car>(carToRemove);
+        }
+
+        public Result UpdateCar(Guid carId, string brand, string model, Color color)
+        {
+            var carToUpdate = Cars.FirstOrDefault(c=>  c.Id == carId);
+
+            if (carToUpdate == null)
+                return Result.Failure(Error.NotFound("Cars.NotFound", $"The car with id equal to {carId} does not exist or does not belong to this user."));
+
+            carToUpdate.Brand = brand;
+            carToUpdate.Model = model;
+            carToUpdate.SetColor(color);
+
+            return Result.Success();
         }
     }
 }
