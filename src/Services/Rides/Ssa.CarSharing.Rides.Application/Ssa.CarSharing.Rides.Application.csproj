@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Ssa.CarSharing.Common.Application\Ssa.CarSharing.Common.Application.csproj" />
+    <ProjectReference Include="..\Ssa.CarSharing.Rides.Domain\Ssa.CarSharing.Rides.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Rides\" />
+  </ItemGroup>
+
 </Project>

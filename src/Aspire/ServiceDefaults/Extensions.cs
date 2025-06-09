@@ -1,5 +1,7 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
@@ -7,6 +9,7 @@ using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
+using System.Reflection;
 
 namespace Microsoft.Extensions.Hosting
 {
@@ -31,6 +34,8 @@ namespace Microsoft.Extensions.Hosting
                 // Turn on service discovery by default
                 http.AddServiceDiscovery();
             });
+
+            builder.AddDefaultRabbitMq();
 
             // Uncomment the following to restrict the allowed schemes for service discovery.
             // builder.Services.Configure<ServiceDiscoveryOptions>(options =>
@@ -95,6 +100,35 @@ namespace Microsoft.Extensions.Hosting
                 // Add a default liveness check to ensure app is responsive
                 .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
+            return builder;
+        }
+        
+        
+        public static TBuilder AddDefaultRabbitMq<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
+        {
+            builder.AddRabbitMQClient(connectionName: "rmq-message-broker");
+
+            return builder;
+        }
+        
+        public static TBuilder AddDefaultMassTransit<TBuilder>(this TBuilder builder, IConfiguration configuration, Assembly? assembly = null) where TBuilder : IHostApplicationBuilder
+        {
+            builder.Services.AddMassTransit(config =>
+            {
+                if (assembly != null)
+                    config.AddConsumers(assembly);
+
+                config.SetKebabCaseEndpointNameFormatter();
+
+                config.UsingRabbitMq((context, configurator) =>
+                {
+                    var connectionString = configuration.GetConnectionString("rmq-message-broker");
+                    configurator.Host(connectionString);
+
+                    configurator.ConfigureEndpoints(context);
+                });
+            });
+            
             return builder;
         }
 

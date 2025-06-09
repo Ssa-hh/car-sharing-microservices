@@ -13,11 +13,14 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        string postgresConnectionName;
         var builder = WebApplication.CreateBuilder(args);
         builder.AddServiceDefaults();
 
-        string postgresConnectionName = "userdb";
+        builder.AddDefaultMassTransit(builder.Configuration);
+
         // Aspire client configuration
+        postgresConnectionName = "userdb";
         builder.AddNpgsqlDataSource(postgresConnectionName);
 
         builder.Services.AddApplication();

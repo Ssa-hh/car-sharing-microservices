@@ -3,11 +3,8 @@ using Ssa.CarSharing.Common.Domain;
 using Ssa.CarSharing.Users.Application.Abstructions;
 using Ssa.CarSharing.Users.Application.Data;
 using Ssa.CarSharing.Users.Domain.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MassTransit;
+using Ssa.CarSharing.Common.Application.EventBus.Events;
 
 namespace Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser
 {
@@ -16,11 +13,13 @@ namespace Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAuthenticationService _authenticationService;
-        public RegisterUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork, IAuthenticationService authenticationService)
+        private readonly IPublishEndpoint _publishEndpoint;
+        public RegisterUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork, IAuthenticationService authenticationService, IPublishEndpoint publishEndpoint)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
             _authenticationService = authenticationService;
+            _publishEndpoint = publishEndpoint;
         }
         public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
@@ -32,6 +31,10 @@ namespace Ssa.CarSharing.Users.Application.Users.Commands.RegisterUser
             string identityId = await _authenticationService.RegisterUser(user, command.Password, cancellationToken);
 
             user.IdentityId = identityId;
+
+            // TODO: Implement Outbox pattern to ensure that the event is published only after the user is successfully registered
+            await _publishEndpoint.Publish(new UserRegisteredIntegrationEvent { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email }
+                , cancellationToken);
 
             await _userRepository.AddAsync(user);
 
