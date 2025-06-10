@@ -1,4 +1,6 @@
-﻿using Ssa.CarSharing.Rides.Domain.Members;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using Ssa.CarSharing.Rides.Domain.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,44 @@ namespace Ssa.CarSharing.Rides.Infrastructure.Database.Repositories;
 
 internal class MemberRepository : IMemberRepository
 {
-    private readonly List<Member> _members = new List<Member>();
-    public Task AddAsync(Member member, CancellationToken cancellationToken)
-    {
-        _members.Add(member);
+    private readonly IMongoCollection<Member> _collection;
 
-        return Task.CompletedTask;
-    }
-    public Task<bool> ExistsAsync(string email, CancellationToken cancellationToken)
+    public MemberRepository(IMongoClient mongoClient, IOptions<MongoDbOptions> options)
     {
-        return Task.FromResult(_members.Any(m => m.Email==email));
+
+        IMongoDatabase mongoDatabase = mongoClient.GetDatabase(options.Value.DatabaseName);
+
+        _collection = mongoDatabase.GetCollection<Member>(options.Value.MemberCollectionName);
+    }
+
+    public async Task AddAsync(Member member, CancellationToken cancellationToken)
+    {
+        await _collection.InsertOneAsync(member);
+    }
+    public async Task<bool> ExistsAsync(string email, CancellationToken cancellationToken)
+    {
+        FilterDefinition<Member> filter = Builders<Member>.Filter.Eq(m => m.Email, email);
+
+        var count = await _collection.CountDocumentsAsync(filter);
+
+        return count > 0;
+    }
+
+    public async Task<Member?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        FilterDefinition<Member> filter = Builders<Member>.Filter.Eq(m=>m.Email, email);
+
+        Member? member = await _collection.Find(filter).SingleOrDefaultAsync(cancellationToken);
+
+        return member;
+    }
+
+    public async Task<Member?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        FilterDefinition<Member> filter = Builders<Member>.Filter.Eq(m => m.Id, id);
+
+        Member? member = await _collection.Find(filter).SingleOrDefaultAsync(cancellationToken);
+
+        return member;
     }
 }

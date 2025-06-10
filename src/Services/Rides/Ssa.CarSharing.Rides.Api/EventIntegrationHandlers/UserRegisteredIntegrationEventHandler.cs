@@ -17,7 +17,7 @@ public class UserRegisteredIntegrationEventHandler : IConsumer<UserRegisteredInt
 
     public async Task Consume(ConsumeContext<UserRegisteredIntegrationEvent> context)
     {
-        // TODO: log error validation and exception handling
+        // TODO: implement SAGA pattern to handle distributed transaction
         await _sender.Send(new CreateMemberCommand(context.Message.FirstName,context.Message.LastName, context.Message.Email), context.CancellationToken);
     }
 }

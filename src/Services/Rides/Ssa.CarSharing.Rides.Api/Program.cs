@@ -4,13 +4,14 @@ using Ssa.CarSharing.Rides.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Aspire
 builder.AddServiceDefaults();
-
 builder.AddDefaultMassTransit(builder.Configuration, typeof(Program).Assembly);
+
 
 builder.Services.AddApplication();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.AddInfrastructure(builder.Configuration);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
