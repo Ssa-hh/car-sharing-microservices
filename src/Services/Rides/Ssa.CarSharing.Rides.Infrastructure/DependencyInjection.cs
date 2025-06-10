@@ -11,11 +11,11 @@ namespace Ssa.CarSharing.Rides.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder, IConfiguration configuration)
+    public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
-        builder.Services.AddCommonInfrastructure(configuration);
+        builder.AddCommonInfrastructure();
 
-        builder.AddDatabase(configuration);
+        builder.AddDatabase(builder.Configuration);
 
         return builder;
     }
@@ -24,7 +24,7 @@ public static class DependencyInjection
     {
         builder.AddMongoDBClient("ridedb");
 
-        builder.Services.Configure<MongoDbOptions>(configuration.GetSection("MongoDb"));
+        builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection("MongoDb"));
 
         builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 

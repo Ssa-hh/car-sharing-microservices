@@ -111,7 +111,7 @@ namespace Microsoft.Extensions.Hosting
             return builder;
         }
         
-        public static TBuilder AddDefaultMassTransit<TBuilder>(this TBuilder builder, IConfiguration configuration, Assembly? assembly = null) where TBuilder : IHostApplicationBuilder
+        public static TBuilder AddDefaultMassTransit<TBuilder>(this TBuilder builder, Assembly? assembly = null) where TBuilder : IHostApplicationBuilder
         {
             builder.Services.AddMassTransit(config =>
             {
@@ -122,7 +122,7 @@ namespace Microsoft.Extensions.Hosting
 
                 config.UsingRabbitMq((context, configurator) =>
                 {
-                    var connectionString = configuration.GetConnectionString("rmq-message-broker");
+                    var connectionString = builder.Configuration.GetConnectionString("rmq-message-broker");
                     configurator.Host(connectionString);
 
                     configurator.ConfigureEndpoints(context);

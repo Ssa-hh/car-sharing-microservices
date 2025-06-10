@@ -6,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Aspire
 builder.AddServiceDefaults();
-builder.AddDefaultMassTransit(builder.Configuration, typeof(Program).Assembly);
+builder.AddDefaultMassTransit(typeof(Program).Assembly);
 
 
 builder.Services.AddApplication();
 
-builder.AddInfrastructure(builder.Configuration);
+builder.AddInfrastructure();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

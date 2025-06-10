@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Ssa.CarSharing.Common.Infrastructure;
 using Ssa.CarSharing.Users.Application.Abstructions;
 using Ssa.CarSharing.Users.Application.Data;
 using Ssa.CarSharing.Users.Domain.Users;
@@ -10,65 +12,68 @@ using Ssa.CarSharing.Users.infrastructure.Database;
 using Ssa.CarSharing.Users.infrastructure.Database.Repositories;
 using AuthenticationService = Ssa.CarSharing.Users.infrastructure.Authentication.AuthenticationService;
 using IAuthenticationService = Ssa.CarSharing.Users.Application.Abstructions.IAuthenticationService;
-using Ssa.CarSharing.Common.Infrastructure;
 
 namespace Ssa.CarSharing.Users.infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, string connectionName)
+    public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
-        String connectionString;
+        String connectionString, connectionStringName;
 
-        services.AddCommonInfrastructure(configuration);
+        builder.AddCommonInfrastructure();
 
-        connectionString = configuration.GetConnectionString(connectionName)!;
-        services.AddDbContext<ApplicationDbContext>(options =>
+        connectionStringName = builder.Configuration["Postgres:ConnectionName"]!;
+        connectionString = builder.Configuration.GetConnectionString(connectionStringName)!;
+        builder.AddNpgsqlDataSource(connectionStringName);
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
             options.UseNpgsql(connectionString);
         });
 
-        services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
-        services.AddAuthentication(configuration);
+        builder.AddAuthentication();
 
-        return services;
+        return builder;
     }
 
-    private static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+    private static IHostApplicationBuilder AddAuthentication(this IHostApplicationBuilder builder)
     {
         KeycloakOptions keycloakOptions;
 
-        services.AddScoped<IJwtService, JwtService>();
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
-        services.Configure<KeycloakOptions>(configuration.GetSection("KeycloakSettings"));
+        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+        builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("KeycloakSettings"));
 
-        keycloakOptions = services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
-        services.AddHttpClient<IAuthenticationService, AuthenticationService>(httpClient =>
+        keycloakOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
+        builder.Services.AddHttpClient<IAuthenticationService, AuthenticationService>(httpClient =>
         {
             httpClient.BaseAddress = new Uri(keycloakOptions.AdminUrl);
         });
 
-        services.AddHttpClient<IJwtService, JwtService>(httpClient =>
+        builder.Services.AddHttpClient<IJwtService, JwtService>(httpClient =>
         {
             httpClient.BaseAddress = new Uri(keycloakOptions.TokenUrl);
         });
 
-        services.AddAuthentication()
+        builder.Services.AddAuthentication()
             .AddKeycloakJwtBearer(serviceName: "keycloak",
             realm: keycloakOptions.Realm,
             options =>
             {
-                options.Audience = configuration["Authentication:Audience"];
-                options.RequireHttpsMetadata = bool.Parse(configuration["Authentication:RequireHttpsMetadata"]!);
+                options.Audience = builder.Configuration["Authentication:Audience"];
+                options.RequireHttpsMetadata = bool.Parse(builder.Configuration["Authentication:RequireHttpsMetadata"]!);
             });
 
-        services.AddAuthorization();
+        builder.Services.AddAuthorization();
 
-        services.AddHttpContextAccessor();
+        builder.Services.AddHttpContextAccessor();
 
-        services.AddScoped<IUserContext, UserContext>();
+        builder.Services.AddScoped<IUserContext, UserContext>();
+
+        return builder;
     }
 }

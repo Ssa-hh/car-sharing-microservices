@@ -17,7 +17,7 @@ var keycloakUsername = builder.AddParameter("keycloak-username", secret:true);
 var keycloakPassword = builder.AddParameter("keycloak-password", secret: true);
 var keycloak = builder.AddKeycloak("keycloak", 8001, keycloakUsername, keycloakPassword)
     .WithDataVolume()
-    .WithRealmImport("./carsharing-realms.json")
+    // .WithRealmImport("./carsharing-realms.json")
     ;
 
 var rmqUsername = builder.AddParameter("message-broker-username", secret: true);
@@ -30,7 +30,8 @@ var mongoUsername = builder.AddParameter("mongo-username", secret: true);
 var mongoPassword = builder.AddParameter("mongo-password", secret: true);
 var mongo = builder.AddMongoDB("ride-mongodb", null, mongoUsername, mongoPassword)
     .WithMongoExpress()
-    .WithDataVolume();
+    .WithDataVolume()
+    ;
 
 var mongoDb = mongo.AddDatabase("ridedb");
 

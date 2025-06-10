@@ -13,19 +13,14 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        string postgresConnectionName;
         var builder = WebApplication.CreateBuilder(args);
         builder.AddServiceDefaults();
 
-        builder.AddDefaultMassTransit(builder.Configuration);
-
-        // Aspire client configuration
-        postgresConnectionName = "userdb";
-        builder.AddNpgsqlDataSource(postgresConnectionName);
+        builder.AddDefaultMassTransit();
 
         builder.Services.AddApplication();
 
-        builder.Services.AddInfrastructure(builder.Configuration, postgresConnectionName);
+        builder.AddInfrastructure();
         builder.Services.AddApi();
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
