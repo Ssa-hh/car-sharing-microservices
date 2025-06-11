@@ -51,7 +51,7 @@ namespace Ssa.CarSharing.Users.infrastructure.Authentication.Models
 
         public required string Username { get; set; }
 
-        internal static UserModel FromUser(User user) =>
+        internal static UserModel FromUser(Domain.Users.User user) =>
             new()
             {
                 FirstName = user.FirstName,

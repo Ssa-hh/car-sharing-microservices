@@ -17,8 +17,7 @@ var keycloakUsername = builder.AddParameter("keycloak-username", secret:true);
 var keycloakPassword = builder.AddParameter("keycloak-password", secret: true);
 var keycloak = builder.AddKeycloak("keycloak", 8001, keycloakUsername, keycloakPassword)
     .WithDataVolume()
-    // .WithRealmImport("./carsharing-realms.json")
-    ;
+    .WithRealmImport("./carsharing-realms.json");
 
 var rmqUsername = builder.AddParameter("message-broker-username", secret: true);
 var rmqPassword = builder.AddParameter("message-broker-password", secret: true);

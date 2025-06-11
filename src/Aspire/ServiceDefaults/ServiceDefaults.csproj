@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Aspire.Keycloak.Authentication" Version="9.3.0-preview.1.25265.20" />
     <PackageReference Include="Aspire.RabbitMQ.Client" Version="9.3.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
 

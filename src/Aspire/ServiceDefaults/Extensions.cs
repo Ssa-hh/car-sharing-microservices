@@ -1,10 +1,12 @@
 using MassTransit;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
@@ -36,6 +38,8 @@ namespace Microsoft.Extensions.Hosting
             });
 
             builder.AddDefaultRabbitMq();
+
+            builder.AddDefaultKeycloak();
 
             // Uncomment the following to restrict the allowed schemes for service discovery.
             // builder.Services.Configure<ServiceDiscoveryOptions>(options =>
@@ -129,6 +133,20 @@ namespace Microsoft.Extensions.Hosting
                 });
             });
             
+            return builder;
+        }
+
+        private static IHostApplicationBuilder AddDefaultKeycloak(this IHostApplicationBuilder builder)
+        {
+            builder.Services.AddAuthentication()
+                .AddKeycloakJwtBearer(serviceName: builder.Configuration["KeycloakSettings:ServerName"]!,
+                realm: builder.Configuration["KeycloakSettings:Realm"]!,
+                options =>
+                {
+                    options.Audience = builder.Configuration["Authentication:Audience"];
+                    options.RequireHttpsMetadata = bool.Parse(builder.Configuration["Authentication:RequireHttpsMetadata"]!);
+                });
+
             return builder;
         }
 

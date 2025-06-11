@@ -13,7 +13,7 @@ namespace Ssa.CarSharing.Users.infrastructure.Database
 {
     internal class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IUnitOfWork
     {
-        internal DbSet<User> Users { get; set; }
+        internal DbSet<Domain.Users.User> Users { get; set; }
 
         internal DbSet<Car> Cars { get; set; }
 

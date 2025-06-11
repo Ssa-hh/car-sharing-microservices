@@ -3,15 +3,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Ssa.CarSharing.Common.infrastructure.Authentication;
 using Ssa.CarSharing.Common.Infrastructure;
-using Ssa.CarSharing.Users.Application.Abstructions;
+using Ssa.CarSharing.User.infrastructure.Authentication;
+using Ssa.CarSharing.Users.Application.Abstractions;
 using Ssa.CarSharing.Users.Application.Data;
 using Ssa.CarSharing.Users.Domain.Users;
 using Ssa.CarSharing.Users.infrastructure.Authentication;
 using Ssa.CarSharing.Users.infrastructure.Database;
 using Ssa.CarSharing.Users.infrastructure.Database.Repositories;
 using AuthenticationService = Ssa.CarSharing.Users.infrastructure.Authentication.AuthenticationService;
-using IAuthenticationService = Ssa.CarSharing.Users.Application.Abstructions.IAuthenticationService;
+using IAuthenticationService = Ssa.CarSharing.Users.Application.Abstractions.IAuthenticationService;
 
 namespace Ssa.CarSharing.Users.infrastructure;
 
@@ -42,37 +44,22 @@ public static class DependencyInjection
 
     private static IHostApplicationBuilder AddAuthentication(this IHostApplicationBuilder builder)
     {
-        KeycloakOptions keycloakOptions;
-
-        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.AddScoped<AdminJwtService>();
         builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-        builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("KeycloakSettings"));
 
-        keycloakOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
+        builder.Services.Configure<KeycloakAdminOptions>(builder.Configuration.GetSection("KeycloakAdminSettings"));
+
         builder.Services.AddHttpClient<IAuthenticationService, AuthenticationService>(httpClient =>
         {
-            httpClient.BaseAddress = new Uri(keycloakOptions.AdminUrl);
+            KeycloakAdminOptions keycloakAdminOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakAdminOptions>>().Value;
+            httpClient.BaseAddress = new Uri(keycloakAdminOptions.AdminUrl);
         });
 
-        builder.Services.AddHttpClient<IJwtService, JwtService>(httpClient =>
+        builder.Services.AddHttpClient<AdminJwtService>(httpClient =>
         {
+            KeycloakOptions keycloakOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
             httpClient.BaseAddress = new Uri(keycloakOptions.TokenUrl);
         });
-
-        builder.Services.AddAuthentication()
-            .AddKeycloakJwtBearer(serviceName: "keycloak",
-            realm: keycloakOptions.Realm,
-            options =>
-            {
-                options.Audience = builder.Configuration["Authentication:Audience"];
-                options.RequireHttpsMetadata = bool.Parse(builder.Configuration["Authentication:RequireHttpsMetadata"]!);
-            });
-
-        builder.Services.AddAuthorization();
-
-        builder.Services.AddHttpContextAccessor();
-
-        builder.Services.AddScoped<IUserContext, UserContext>();
 
         return builder;
     }

@@ -19,7 +19,7 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
             _context = context;
         }
 
-        public async Task<User?> GetByIdAsync(Guid id, bool withCars = false)
+        public async Task<Domain.Users.User?> GetByIdAsync(Guid id, bool withCars = false)
         {
             var query = _context.Users.AsQueryable();
             if (withCars)
@@ -28,7 +28,7 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
             return await query.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<User?> GetByEmailAsync(string email, bool withCars = false)
+        public async Task<Domain.Users.User?> GetByEmailAsync(string email, bool withCars = false)
         {
             var query = _context.Users.AsQueryable();
             if (withCars)
@@ -37,7 +37,7 @@ namespace Ssa.CarSharing.Users.infrastructure.Database.Repositories
             return await query.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public async Task AddAsync(User user)
+        public async Task AddAsync(Domain.Users.User user)
         {
             await _context.Users.AddAsync(user);
         }

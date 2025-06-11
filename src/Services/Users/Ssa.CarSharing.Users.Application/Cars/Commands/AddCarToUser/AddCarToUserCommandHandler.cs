@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using Ssa.CarSharing.Common.Application.CQRS;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Users.Application.Abstructions;
+using Ssa.CarSharing.Common.Application.Authentication;
 using Ssa.CarSharing.Users.Application.Data;
 using Ssa.CarSharing.Users.Application.Users.Queries.GetLoggedInUser;
 using Ssa.CarSharing.Users.Domain.Users;

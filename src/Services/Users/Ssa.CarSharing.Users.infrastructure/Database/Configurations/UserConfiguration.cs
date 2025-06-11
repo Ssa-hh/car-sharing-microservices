@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ssa.CarSharing.Users.Domain.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ssa.CarSharing.Users.infrastructure.Database.Configurations
 {
-    internal class UserConfiguration : IEntityTypeConfiguration<User>
+    internal class UserConfiguration : IEntityTypeConfiguration<Domain.Users.User>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Users.User> builder)
         {
             builder.HasKey(u => u.Id);
 
