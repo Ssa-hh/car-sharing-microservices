@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Ssa.CarSharing.Rides.Domain\Ssa.CarSharing.Rides.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Rides\" />
-  </ItemGroup>
-
 </Project>

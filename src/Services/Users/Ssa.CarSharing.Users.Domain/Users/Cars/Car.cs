@@ -1,5 +1,6 @@
 ﻿using Ssa.CarSharing.Common.Domain;
 using System.Drawing;
+using System.Text.RegularExpressions;
 // using System.Drawing;
 
 namespace Ssa.CarSharing.Users.Domain.Users.Cars;
@@ -9,6 +10,9 @@ public class Car : Entity
     // private int _colorRgb;
     public Car(Guid id, string brand, string model, string colorHexCode, Guid ownerId) : base(id)
     {
+        if (!string.IsNullOrWhiteSpace(colorHexCode) && !IsValidHexColor(colorHexCode))
+            throw new ArgumentException($"The car color \"{colorHexCode}\" is not a valid hexadecimal color code");
+        
         Brand = brand;
         Model = model;
         ColorHexCode = colorHexCode;
@@ -39,5 +43,10 @@ public class Car : Entity
         if (ownerId == Guid.Empty) throw new ArgumentNullException(nameof(ownerId));
 
         return new Car(Guid.NewGuid(), brand, model, ColorTranslator.ToHtml(color), ownerId);
+    }
+
+    private static bool IsValidHexColor(string input)
+    {
+        return Regex.IsMatch(input, @"^#(?:[0-9a-fA-F]{3}){1,2}$");
     }
 }

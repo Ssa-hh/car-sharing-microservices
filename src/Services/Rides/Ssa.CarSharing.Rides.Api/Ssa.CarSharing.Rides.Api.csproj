@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Carter" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Aspire\ServiceDefaults\ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\Common\Ssa.CarSharing.Common.Presentation\Ssa.CarSharing.Common.Presentation.csproj" />
     <ProjectReference Include="..\Ssa.CarSharing.Rides.Application\Ssa.CarSharing.Rides.Application.csproj" />
     <ProjectReference Include="..\Ssa.CarSharing.Rides.Infrastructure\Ssa.CarSharing.Rides.Infrastructure.csproj" />
   </ItemGroup>

@@ -21,12 +21,7 @@ public class Program
         builder.Services.AddApplication();
 
         builder.AddInfrastructure();
-        builder.Services.AddApi();
-
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-        builder.Services.AddOpenApi();
-
-        builder.Services.AddSwaggerGen();
+        builder.AddApi();
 
         var app = builder.Build();
 

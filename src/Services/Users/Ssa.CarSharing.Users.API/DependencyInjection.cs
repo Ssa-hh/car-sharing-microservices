@@ -6,9 +6,14 @@ namespace Ssa.CarSharing.Users.API;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApi(this IServiceCollection services) {
-        services.AddCarter();
+    public static IHostApplicationBuilder AddApi(this IHostApplicationBuilder builder)
+    {
+        builder.Services.AddCarter();
 
-        return services;
+        builder.Services.AddOpenApi();
+
+        builder.Services.AddSwaggerGen();
+
+        return builder;
     }
 }

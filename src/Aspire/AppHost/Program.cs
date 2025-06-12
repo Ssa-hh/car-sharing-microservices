@@ -10,26 +10,28 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Add a PostgreSQL database with pgAdmin and a data volume
 var postgres = builder.AddPostgres("postgres")
     .WithPgAdmin()
-    .WithDataVolume();
+    // .WithDataVolume()
+    ;
 var postgresDb = postgres.AddDatabase("userdb");
 
 var keycloakUsername = builder.AddParameter("keycloak-username", secret:true);
 var keycloakPassword = builder.AddParameter("keycloak-password", secret: true);
 var keycloak = builder.AddKeycloak("keycloak", 8001, keycloakUsername, keycloakPassword)
-    .WithDataVolume()
+    // .WithDataVolume()
     .WithRealmImport("./carsharing-realms.json");
 
 var rmqUsername = builder.AddParameter("message-broker-username", secret: true);
 var rmqPassword = builder.AddParameter("message-broker-password", secret: true);
 var rabbitMq = builder.AddRabbitMQ("rmq-message-broker", rmqUsername, rmqPassword)
     .WithManagementPlugin()
-    .WithDataVolume();
+    // .WithDataVolume()
+    ;
 
 var mongoUsername = builder.AddParameter("mongo-username", secret: true);
 var mongoPassword = builder.AddParameter("mongo-password", secret: true);
 var mongo = builder.AddMongoDB("ride-mongodb", null, mongoUsername, mongoPassword)
     .WithMongoExpress()
-    .WithDataVolume()
+    // .WithDataVolume()
     ;
 
 var mongoDb = mongo.AddDatabase("ridedb");
@@ -45,7 +47,9 @@ builder.AddProject<Projects.Ssa_CarSharing_Users_API>("ssa-carsharing-users-api"
 builder.AddProject<Projects.Ssa_CarSharing_Rides_Api>("ssa-carsharing-rides-api")
     .WithReference(rabbitMq)
     .WithReference(mongoDb)
+    .WithReference(keycloak)
     .WaitFor(rabbitMq)
-    .WaitFor(mongoDb);
+    .WaitFor(mongoDb)
+    .WaitFor(keycloak);
 
 builder.Build().Run();

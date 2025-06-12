@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ssa.CarSharing.Common.Infrastructure;
 using Ssa.CarSharing.Rides.Domain.Members;
+using Ssa.CarSharing.Rides.Domain.Rides;
 using Ssa.CarSharing.Rides.Infrastructure.Database;
 using Ssa.CarSharing.Rides.Infrastructure.Database.Repositories;
 using System.Reflection;
@@ -27,6 +28,8 @@ public static class DependencyInjection
         builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection("MongoDb"));
 
         builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+
+        builder.Services.AddScoped<IRideRepository, RideRepository>();
 
         return builder;
     }

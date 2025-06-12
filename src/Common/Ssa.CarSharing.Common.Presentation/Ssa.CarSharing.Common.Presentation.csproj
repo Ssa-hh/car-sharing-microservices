@@ -9,6 +9,9 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+	</ItemGroup>
+	<ItemGroup>
 	  <ProjectReference Include="..\Ssa.CarSharing.Common.Application\Ssa.CarSharing.Common.Application.csproj" />
 	</ItemGroup>
 
