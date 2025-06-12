@@ -22,6 +22,7 @@ public static class ApiResults
         {
             ErrorType.NotFound => Results.NotFound(new Error(result.Error.Description)),
             ErrorType.Conflict => Results.Conflict(new Error(result.Error.Description)),
+            ErrorType.Forbidden => Results.Forbid(),
             _ => Results.BadRequest(new Error(result.Error.Description))
         };
     }

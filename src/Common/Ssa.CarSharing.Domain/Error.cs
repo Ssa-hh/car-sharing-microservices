@@ -18,5 +18,7 @@ namespace Ssa.CarSharing.Common.Domain
 
         public static Error Conflict(string code, string description) => new(code, description, ErrorType.Conflict);
 
+        public static Error Forbidden(string code, string description) => new(code, description, ErrorType.Forbidden);
+
     }
 }

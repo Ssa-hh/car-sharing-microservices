@@ -21,10 +21,12 @@ internal class RideRepository : IRideRepository
         await _collection.InsertOneAsync(ride);
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<long> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         FilterDefinition<Ride> filter = Builders<Ride>.Filter.Eq(m => m.Id, id);
-        await _collection.DeleteOneAsync(filter);
+        var result = await _collection.DeleteOneAsync(filter);
+
+        return  result.DeletedCount;
     }
 
     public async Task<Ride?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)

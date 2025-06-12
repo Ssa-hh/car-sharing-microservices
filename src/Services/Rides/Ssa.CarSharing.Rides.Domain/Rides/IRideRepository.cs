@@ -6,7 +6,7 @@ public interface IRideRepository
 
     Task AddAsync(Ride member, CancellationToken cancellationToken = default);
 
-    Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<long> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
     
     // Task UpdateAsync(Member member, CancellationToken cancellationToken = default);
 
