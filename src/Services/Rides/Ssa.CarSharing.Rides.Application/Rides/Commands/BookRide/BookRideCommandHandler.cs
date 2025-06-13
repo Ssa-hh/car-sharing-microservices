@@ -47,7 +47,7 @@ namespace Ssa.CarSharing.Rides.Application.Rides.Commands.BookRide
             var nbrModified = await _rideRepository.ReplaceAsync(rideToBook, cancellationToken);
 
             if(nbrModified==0)
-                return Result.Failure<Guid>(Error.NotFound("Rides.NotFound", "Fail to update database."));
+                return Result.Failure<Guid>(Error.NotFound("Rides.FailUpdate", "Fail to update database."));
 
             return Result.Success(result.Value);
         }
