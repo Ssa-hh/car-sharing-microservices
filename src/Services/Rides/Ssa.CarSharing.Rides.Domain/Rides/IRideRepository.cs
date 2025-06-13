@@ -1,4 +1,6 @@
-﻿namespace Ssa.CarSharing.Rides.Domain.Rides;
+﻿using System.Linq.Expressions;
+
+namespace Ssa.CarSharing.Rides.Domain.Rides;
 
 public interface IRideRepository
 {
@@ -10,4 +12,5 @@ public interface IRideRepository
     
     Task<long> ReplaceAsync(Ride ride, CancellationToken cancellationToken = default);
 
+    Task<IEnumerable<Ride>> FindAsync(DateOnly? startDate, string? pickupCity, string? dropOffCity, bool onlyOpenOrComplete = true, CancellationToken cancellationToken = default);
 }

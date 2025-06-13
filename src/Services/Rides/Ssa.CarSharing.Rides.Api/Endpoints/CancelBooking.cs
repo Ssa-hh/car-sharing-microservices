@@ -3,7 +3,6 @@ using MediatR;
 using Ssa.CarSharing.Common.Domain;
 using Ssa.CarSharing.Common.Presentation.Helpers;
 using Ssa.CarSharing.Rides.Application.Rides.Commands.CancelBooking;
-using static Ssa.CarSharing.Rides.Api.Endpoints.CreateRide;
 
 namespace Ssa.CarSharing.Rides.Api.Endpoints;
 
