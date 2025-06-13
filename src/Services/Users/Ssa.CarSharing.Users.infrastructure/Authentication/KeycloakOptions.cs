@@ -1,4 +1,4 @@
-﻿namespace Ssa.CarSharing.Common.infrastructure.Authentication;
+﻿namespace Ssa.CarSharing.Users.infrastructure.Authentication;
 
 public class KeycloakOptions
 {

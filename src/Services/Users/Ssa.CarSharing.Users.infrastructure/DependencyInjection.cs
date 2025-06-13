@@ -3,9 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Ssa.CarSharing.Common.infrastructure.Authentication;
 using Ssa.CarSharing.Common.Infrastructure;
-using Ssa.CarSharing.User.infrastructure.Authentication;
 using Ssa.CarSharing.Users.Application.Abstractions;
 using Ssa.CarSharing.Users.Application.Data;
 using Ssa.CarSharing.Users.Domain.Users;
@@ -44,6 +42,9 @@ public static class DependencyInjection
 
     private static IHostApplicationBuilder AddAuthentication(this IHostApplicationBuilder builder)
     {
+        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("KeycloakSettings"));
+
         builder.Services.AddScoped<AdminJwtService>();
         builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
@@ -53,6 +54,12 @@ public static class DependencyInjection
         {
             KeycloakAdminOptions keycloakAdminOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakAdminOptions>>().Value;
             httpClient.BaseAddress = new Uri(keycloakAdminOptions.AdminUrl);
+        });
+
+        builder.Services.AddHttpClient<IJwtService, JwtService>(httpClient =>
+        {
+            KeycloakOptions keycloakOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
+            httpClient.BaseAddress = new Uri(keycloakOptions.TokenUrl);
         });
 
         builder.Services.AddHttpClient<AdminJwtService>(httpClient =>

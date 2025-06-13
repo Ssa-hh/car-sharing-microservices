@@ -1,6 +1,6 @@
 ﻿using Ssa.CarSharing.Common.Application.CQRS;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Common.Application.Authentication;
+using Ssa.CarSharing.Users.Application.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

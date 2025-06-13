@@ -1,6 +1,6 @@
 ﻿using Ssa.CarSharing.Common.Domain;
 
-namespace Ssa.CarSharing.Common.Application.Authentication;
+namespace Ssa.CarSharing.Users.Application.Abstractions;
 
 public interface IJwtService
 {

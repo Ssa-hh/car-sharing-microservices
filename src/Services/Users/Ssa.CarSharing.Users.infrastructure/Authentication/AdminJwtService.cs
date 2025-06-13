@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Common.infrastructure.Authentication;
-using Ssa.CarSharing.Common.infrastructure.Authentication.Models;
-using Ssa.CarSharing.User.infrastructure.Authentication;
+using Ssa.CarSharing.Users.infrastructure.Authentication;
+using Ssa.CarSharing.Users.infrastructure.Authentication.Models;
 using System.Net.Http.Json;
 
 namespace Ssa.CarSharing.Users.infrastructure.Authentication

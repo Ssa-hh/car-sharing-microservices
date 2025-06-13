@@ -17,15 +17,6 @@ public static class DependencyInjection
 
     private static IHostApplicationBuilder AddAuthentication(this IHostApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IJwtService, JwtService>();
-        builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("KeycloakSettings"));
-
-        builder.Services.AddHttpClient<IJwtService, JwtService>(httpClient =>
-        {
-            KeycloakOptions keycloakOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<KeycloakOptions>>().Value;
-            httpClient.BaseAddress = new Uri(keycloakOptions.TokenUrl);
-        });
-
         builder.Services.AddAuthorization();
 
         builder.Services.AddHttpContextAccessor();

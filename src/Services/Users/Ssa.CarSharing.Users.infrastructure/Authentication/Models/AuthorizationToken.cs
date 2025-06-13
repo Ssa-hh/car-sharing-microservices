@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Ssa.CarSharing.Common.infrastructure.Authentication.Models;
+namespace Ssa.CarSharing.Users.infrastructure.Authentication.Models;
 
 public class AuthorizationToken
 {

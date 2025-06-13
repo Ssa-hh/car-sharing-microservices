@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Common.infrastructure.Authentication.Models;
-using Ssa.CarSharing.Common.Application.Authentication;
+using Ssa.CarSharing.Users.infrastructure.Authentication.Models;
+using Ssa.CarSharing.Users.Application.Abstractions;
 using System.Net.Http.Json;
 
-namespace Ssa.CarSharing.Common.infrastructure.Authentication;
+namespace Ssa.CarSharing.Users.infrastructure.Authentication;
 
 internal class JwtService : IJwtService
 {
