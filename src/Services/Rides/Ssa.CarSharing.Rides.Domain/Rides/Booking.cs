@@ -10,16 +10,16 @@ namespace Ssa.CarSharing.Rides.Domain.Rides
 {
     public class Booking : Entity
     {
-        private Booking(Guid id, Member passenger, short numberOfBookedSeats, BookingStatus status):base(id)
+        private Booking(Guid id, Member passenger, short numberOfRequestedSeats, BookingStatus status):base(id)
         {
             Passenger = passenger;
-            NumberOfBookedSeats = numberOfBookedSeats;
+            NumberOfRequestedSeats = numberOfRequestedSeats;
             Status = status;
         }
 
         public Member Passenger { get; private set; }
 
-        public short NumberOfBookedSeats { get; private set; }
+        public short NumberOfRequestedSeats { get; private set; }
 
         public BookingStatus Status { get; private set; }
 
