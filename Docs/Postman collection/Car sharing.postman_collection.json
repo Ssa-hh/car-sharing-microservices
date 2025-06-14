@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "daef02ac-1c6f-417a-819f-7bbab443e4c1",
+		"name": "Car sharing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9498271"
+	},
+	"item": [
+		{
+			"name": "Rides",
+			"item": [
+				{
+					"name": "Create ride",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJIRlRHSERDcGdpcHpRREoyMl9XdUlXSXU1bzBzSVNPUHNTNVZsTk9HUUxnIn0.eyJleHAiOjE3NDk3MzA0MjEsImlhdCI6MTc0OTcyNjgyMSwianRpIjoib25ydHJvOmNkY2FlOTYzLWY0OTYtNGY0Mi1hZGQ3LTA2NzRmYzFhOWUyYiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyYWUxYmQ1MC1mYmMzLTRkZTEtYjQxNi1mYzhjMzViYWIxNjUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiODMxNjFhZTQtNTQ0Ni00MWRhLWExMGEtZWZiYmI1NjMzNDgwIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.S3HPNuFHrEdv4zTX0tZO7F3mAWjjuqdxm4yInVPGmzY0FftX138I6lNA3wUVnxas-w-cN2T_klrCOoBIZwhHZXvtbaFIYe1qOZ8-TaW8ssqMZCcPrqUQAJ3rJc-Tno3Wps-c9rU7rZWSMQqt--VwjMvwQn92AnX-fViCyOkZxkmtxTpIVtMRg-DotlfNAEq0rW7a-FXcm51INBFemiQI990zQs8hVoQGIMvtyWIfEKTWrDec1vrX1oDczkWzZ6iizGRMHfQFNsxam4aHMUgd5N1DeWxYCuMq8gzHjyxWrqj8ITADIQ5RJkgJ8WGEci6SrZl-gkocUfuDLFJ5mAMcJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberOfProposedSeats\" : 3, \r\n    \"startsAtUtc\":\"2025-06-20T10:30\",\r\n    \"endsAtUtc\":\"2025-06-20T12:15\",\r\n    \"pickupCity\": \"Grenoble\", \r\n    \"dropOffCity\": \"Lyon\",\r\n    \"car\":{\r\n        \"brand\" : \"Ciroen\",\r\n        \"model\" : \"C2\",\r\n        \"colorHexCode\" : \"#FFFFFF\",\r\n        \"numberOfSeats\": 5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7223/rides",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7223",
+							"path": [
+								"rides"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ride",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpVnR2R2p3Qng5bTJ4WUFSTUl2T29OSDFsSXRTUXpqYU5iZDZBRUVUcVVzIn0.eyJleHAiOjE3NDk3NDM2NDcsImlhdCI6MTc0OTc0MDA0NywianRpIjoib25ydHJvOmFhNGI4MDMzLWJlNjgtNGNhOC1iNzliLWI0YjhiZjg3Y2JkYyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI1OWZlM2FmOS1mMWZlLTRkNmItYjI1Ny1hYWE1OGE1NzYwOTciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiMzQyYTFhMmEtYzJkMy00ZTBhLWE1NTEtNjgwZWJiOTAxMjExIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.bfaX8Lu20j3pL8Rd0sWNZGtRvAXg8wIqknKyC2xBd2MNRBAR8iXAn4cwotSyCGHUbfFupUNZdHt7GKvYdvD43qqn-9gDAcSFiElJf6a3P7gLQFbiGivTM3tYLTY-wl--UaSIODS_rSVvGZZWYKWc1BzZrkvV1Xm7mwzsLgZCNtmdVBFHb2c-bzb-F3nMOKigd_eNqYHZ9sPkeeYiMyfBeArscbEc01d0qYQBbTqKqDntyo1VuDmN9mEatGkA1F1lv1nig7CAjNNvMnrgL_HUcjXjk0aFxI-2C3KgSEgsYqT_Atd7Yn3ws0YtzHqSq_4ddB2MpAOQ5xxZPrmqxhz61w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7223/rides/{ride_id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7223",
+							"path": [
+								"rides",
+								"{ride_id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book ride",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJORXp2cm1oLUl6M0Ftemc5MHA2X21odGk0ZHMzV1F0Z1lWMURZdnZiMUpBIn0.eyJleHAiOjE3NDk4MDg4MjIsImlhdCI6MTc0OTgwNTIyMiwianRpIjoib25ydHJvOjYwOTY4Y2YyLWE1NzYtNDFlYS05OGYzLWZmN2RhZmEzYjFjMiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhNTMzNDhkNC0xNmNmLTRmNzEtYmM0MC02MjM4YWY0YjhjMjkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiN2UxOTQ0MjItNWE3My00NTc4LThjNjItYTMyODMxODJlMjYxIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.Bh3MFX6_RZfiTl9r2zsucQJtf-wHaOwHFNJV-Qy0A0_knFdgdPBkgXlE-B5nvkASrValDLtxv-9EUsOURN01ztfdD1qRx-wngzkYz1jNudWMHOopTbNkr6QKVSqq0rHJNOTv0Zw1fMwLWm_ugtgORt07lYFQMueIMAjLGf6UADNItDeW6c8fpceKn8MQFv9-Piv2Ttl02WdonuLg7DYfvvJ9PO_YI4U13NX-8x3kE_LdPPzQhcga7-DmVVktFB1oFPMt_Aal-iOS2DtxbOT3t0xKFhy1o4DQfiit26tlA4a1XDXZSuXSwxCAl1bVO4E4hKW2tyQ2f2vps3NouxnOBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberOfRequestedSeats\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7223/rides/{ride_id}/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7223",
+							"path": [
+								"rides",
+								"{ride_id}",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel ride booking ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJORXp2cm1oLUl6M0Ftemc5MHA2X21odGk0ZHMzV1F0Z1lWMURZdnZiMUpBIn0.eyJleHAiOjE3NDk4MDg4MjIsImlhdCI6MTc0OTgwNTIyMiwianRpIjoib25ydHJvOjYwOTY4Y2YyLWE1NzYtNDFlYS05OGYzLWZmN2RhZmEzYjFjMiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhNTMzNDhkNC0xNmNmLTRmNzEtYmM0MC02MjM4YWY0YjhjMjkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiN2UxOTQ0MjItNWE3My00NTc4LThjNjItYTMyODMxODJlMjYxIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.Bh3MFX6_RZfiTl9r2zsucQJtf-wHaOwHFNJV-Qy0A0_knFdgdPBkgXlE-B5nvkASrValDLtxv-9EUsOURN01ztfdD1qRx-wngzkYz1jNudWMHOopTbNkr6QKVSqq0rHJNOTv0Zw1fMwLWm_ugtgORt07lYFQMueIMAjLGf6UADNItDeW6c8fpceKn8MQFv9-Piv2Ttl02WdonuLg7DYfvvJ9PO_YI4U13NX-8x3kE_LdPPzQhcga7-DmVVktFB1oFPMt_Aal-iOS2DtxbOT3t0xKFhy1o4DQfiit26tlA4a1XDXZSuXSwxCAl1bVO4E4hKW2tyQ2f2vps3NouxnOBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7223/rides/{ride_id}/bookings/mine",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7223",
+							"path": [
+								"rides",
+								"{ride_id}",
+								"bookings",
+								"mine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rides",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7223/rides?startdate=2025-06-17&pickupcity=Grenoble&dropoffcity=Lyon",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7223",
+							"path": [
+								"rides"
+							],
+							"query": [
+								{
+									"key": "startdate",
+									"value": "2025-06-17"
+								},
+								{
+									"key": "pickupcity",
+									"value": "Grenoble"
+								},
+								{
+									"key": "dropoffcity",
+									"value": "Lyon"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"samir\",\r\n    \"lastName\": \"salmi\",\r\n    \"email\": \"samir.salmi@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7281/users/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get currently logged in user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJIRlRHSERDcGdpcHpRREoyMl9XdUlXSXU1bzBzSVNPUHNTNVZsTk9HUUxnIn0.eyJleHAiOjE3NDk3MzA0MjEsImlhdCI6MTc0OTcyNjgyMSwianRpIjoib25ydHJvOmNkY2FlOTYzLWY0OTYtNGY0Mi1hZGQ3LTA2NzRmYzFhOWUyYiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyYWUxYmQ1MC1mYmMzLTRkZTEtYjQxNi1mYzhjMzViYWIxNjUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiODMxNjFhZTQtNTQ0Ni00MWRhLWExMGEtZWZiYmI1NjMzNDgwIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.S3HPNuFHrEdv4zTX0tZO7F3mAWjjuqdxm4yInVPGmzY0FftX138I6lNA3wUVnxas-w-cN2T_klrCOoBIZwhHZXvtbaFIYe1qOZ8-TaW8ssqMZCcPrqUQAJ3rJc-Tno3Wps-c9rU7rZWSMQqt--VwjMvwQn92AnX-fViCyOkZxkmtxTpIVtMRg-DotlfNAEq0rW7a-FXcm51INBFemiQI990zQs8hVoQGIMvtyWIfEKTWrDec1vrX1oDczkWzZ6iizGRMHfQFNsxam4aHMUgd5N1DeWxYCuMq8gzHjyxWrqj8ITADIQ5RJkgJ8WGEci6SrZl-gkocUfuDLFJ5mAMcJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7281/users/me",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log in user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"samir.salmi@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7281/users/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add car to user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJrdFB2OEVqdi0ybEdZeGY4aVRhZ0U0Ti1nek8zTzQtdDJjSkRmR005enBJIn0.eyJleHAiOjE3NDkzODA0NzksImlhdCI6MTc0OTM3Njg3OSwianRpIjoib25ydHJvOjAwZThmNWEzLTlkZjctNDQwOC1iZDBjLTNiOTc2ZDFmNGI2ZCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI1YjY5YWQzNC1kNDQyLTQxNmUtODhiMi1iNGY3MDY1ZTJiOWEiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiNDBlYmEyMjItNTY0Ny00MWJjLWE0ZTItNzZkOGRjYzU0ZTU3IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.gaWiCxt4ewnAQF2HOb3w1G6sGhXuSxN50eZOMFKESSdHIqsbXaSpS_yYLOSkI0apuhagmoWOFmqEIhBucnLSwzVXB2LG0NhcWNWtrO33ozfZUHbLBElhxh7WDVGnscHvfnHs1rRXxHmlSpYp7M4LxW73WmigI0JQnwXWgdsHhdWRZVeLD1GuLTPGgaj5QFa9jUQ_yQ1P5n1OJ4TQyn6jFcbI0XbheDaslRGZ1chCRDXHirl-dKPgSa1MGNkz9jPz7beEVS3RVSmwFpb5EBooENSNXooSElzo-na7IQU_DYA8wUdxt3Q3vvkCwGwO31o-Qj1-lmcr0R2NuGGV6A36Bg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\" : \"Ciroen\",\r\n    \"model\" : \"C2\",\r\n    \"colorHexCode\" : \"#FFFFFF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7281/users/me/cars",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"me",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user car",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJrdFB2OEVqdi0ybEdZeGY4aVRhZ0U0Ti1nek8zTzQtdDJjSkRmR005enBJIn0.eyJleHAiOjE3NDkzMzcwNTMsImlhdCI6MTc0OTMzMzQ1MywianRpIjoib25ydHJvOmQxMzA3NDQxLWJlODMtNDZjNC05Mzk3LTgzNWViZjM5OWE3NCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI1YjY5YWQzNC1kNDQyLTQxNmUtODhiMi1iNGY3MDY1ZTJiOWEiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiNGE3OGE3ZDgtY2FlNi00NDJlLWI3MTItMzAyMjU2OWFlZDMyIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.kVfsO3zh-fiI9m1PdbfPZ4Mz12bYBVDKm8LmdjlL_T20VljwuaBcXecho_yvbYo1vXduPckmUywUmhCUVMEt9Y_-lZhf2ITvyPKKX_Qqo0M8oBMss-ZJCQFaGlBVBDucgyUCGXumeEZ2N5LK8Ll996cEeAOM6tKuKi6IAjhPgpy8tbz8mSaDmpJWbEIQg4NknT4fx_bg143gqjZ67bhZ9rlpdD1zUQj0ykrih17VEikgUwM4aVl7WvqoJbXzb6P2BwvRovJ88zBjYeCGwneEq10b93ZQkmRXsLVxtEGKyYOGNQKI6fSGrVSLj4nLj66hAweTpcJA9N8vy5W8j7V_cg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7281/users/me/cars/422471d4-e40c-4a47-8b28-b92c187bc39a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"me",
+								"cars",
+								"422471d4-e40c-4a47-8b28-b92c187bc39a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user car",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJrdFB2OEVqdi0ybEdZeGY4aVRhZ0U0Ti1nek8zTzQtdDJjSkRmR005enBJIn0.eyJleHAiOjE3NDkzODIwMDUsImlhdCI6MTc0OTM3ODQwNSwianRpIjoib25ydHJvOmI1Y2FhZmI0LTUzM2ItNDU4OS05NTgwLWQ4YmRiMmZiZjFjZSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMS9yZWFsbXMvY2Fyc2hhcmluZyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI1YjY5YWQzNC1kNDQyLTQxNmUtODhiMi1iNGY3MDY1ZTJiOWEiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYXJzaGFyaW5nLWF1dGgtY2xpZW50Iiwic2lkIjoiMzkxYjA0OWEtNTU2OC00ZjQ1LWE4MWYtNjNmOGEwYmY5NmRlIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNhcnNoYXJpbmciLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InNhbWlyIHNhbG1pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6InNhbWlyIiwiZmFtaWx5X25hbWUiOiJzYWxtaSIsImVtYWlsIjoic2FtaXIuc2FsbWlAZ21haWwuY29tIn0.yJIa13fp_pFztS-P2k8eR4w_L0PFoZrAzJbjPtp6hJ-pQvIWEDTTdolA1OeR0bxPzhwzYNAlPLmSQsKJGJUwjWgFfqOtLgjFteSulouVRsM2ZbcaXw4kIHFl89QYMVw2JZMPG3V2hvkhjs_DxmZosHtJw8IK2muQ1nC1ahknweJAFgA3gKC78pd0ciKTyfY4uE3bjGYWQvppxRh6ffaupNOTznAncN_S51lokm_AL9ka7eFSovIQe1kqLEP4ZkVF5vaXcDthY8-8IooCppAUQK72IHzUEv7H4HzbwQmsJmIuBfS3uJCh1C5k0yj8Tis5SKUdTejSXDvYXug_lM0yog",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\" : \"Ciroen1\",\r\n    \"model\" : \"C3\",\r\n    \"colorHexCode\" : \"#FFFF00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7281/users/me/cars/b525455c-41b3-4e2e-b719-4bff60cffbd2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7281",
+							"path": [
+								"users",
+								"me",
+								"cars",
+								"b525455c-41b3-4e2e-b719-4bff60cffbd2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get client token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "carsharing-admin-client",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "UZDmbNxWmV4TlpaCRcju6pMRsyuV3er1",
+									"type": "text"
+								},
+								{
+									"key": "scop",
+									"value": "openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8001/realms/carsharing/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"realms",
+								"carsharing",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admin token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8001/realms/carsharing/protocol/openid-connect/token?=&=&=&=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"realms",
+								"carsharing",
+								"protocol",
+								"openid-connect",
+								"token"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
