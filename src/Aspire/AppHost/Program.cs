@@ -36,7 +36,7 @@ var mongo = builder.AddMongoDB("ride-mongodb", null, mongoUsername, mongoPasswor
 
 var mongoDb = mongo.AddDatabase("ridedb");
 
-builder.AddProject<Projects.Ssa_CarSharing_Users_API>("ssa-carsharing-users-api")
+var usersApi = builder.AddProject<Projects.Ssa_CarSharing_Users_API>("ssa-carsharing-users-api")
     .WithReference(postgresDb)
     .WithReference(keycloak)
     .WithReference(rabbitMq)
@@ -44,12 +44,22 @@ builder.AddProject<Projects.Ssa_CarSharing_Users_API>("ssa-carsharing-users-api"
     .WaitFor(keycloak)
     .WaitFor(rabbitMq);
 
-builder.AddProject<Projects.Ssa_CarSharing_Rides_Api>("ssa-carsharing-rides-api")
+var ridesApi = builder.AddProject<Projects.Ssa_CarSharing_Rides_Api>("ssa-carsharing-rides-api")
     .WithReference(rabbitMq)
     .WithReference(mongoDb)
     .WithReference(keycloak)
     .WaitFor(rabbitMq)
     .WaitFor(mongoDb)
     .WaitFor(keycloak);
+
+builder.AddNpmApp("angular-app", "../../Web/carsharing-angular-app")
+    .WithReference(usersApi)
+    .WithReference(ridesApi)
+    .WaitFor(usersApi)
+    .WaitFor(ridesApi)
+    .WithHttpEndpoint(env:"PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile()
+    ;
 
 builder.Build().Run();
