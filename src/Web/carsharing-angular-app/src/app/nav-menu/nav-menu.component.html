@@ -1,0 +1,29 @@
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd !important">
+    <div class="container-fluid custom-container">
+      <a class="navbar-brand" routerLink="/">
+        <img src="images/carsharing-logo.webp" alt="Logo" width="30" height="auto" class="d-inline-block align-text-top">
+        Carsharing
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#appNavbarContent" aria-controls="appNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="appNavbarContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+          <li class="nav-item">
+            <button class="btn" type="button"><i-bs name="search" class="pe-1"></i-bs>Search</button>
+          </li>
+          <li ngbDropdown class="nav-item">
+                <a class="nav-link" id="accountDropdown" ngbDropdownToggle>
+                  <i-bs name="person-circle" class="pe-1"></i-bs>
+                </a>
+			    <ul ngbDropdownMenu aria-labelledby="accountDropdown" class="dropdown-menu">
+                    <li><a ngbDropdownItem>Log in</a></li>
+                    <li><a ngbDropdownItem>Sign up</a></li>
+			    </ul>
+		    </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
