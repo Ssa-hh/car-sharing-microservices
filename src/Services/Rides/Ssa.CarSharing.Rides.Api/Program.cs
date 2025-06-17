@@ -16,6 +16,19 @@ builder.Services.AddApplication();
 builder.AddInfrastructure();
 builder.AddApi();
 
+// TODO: remove it or refine it
+var allowFrontendOrigins = "_allowFrontendOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowFrontendOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*")
+                          .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -28,6 +41,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// TODO: remove it or refine it
+app.UseCors(allowFrontendOrigins);
 
 app.UseHttpsRedirection();
 
