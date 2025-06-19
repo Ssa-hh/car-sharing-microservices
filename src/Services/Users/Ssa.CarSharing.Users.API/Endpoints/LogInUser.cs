@@ -12,12 +12,12 @@ public class LogInUser : ICarterModule
     {
         app.MapPost("/users/login", async (LogInUserRequest request, ISender sender) =>
         {
-            Result<AccessTokenResponse> result = await sender.Send(new LogInUserCommand(request.Email, request.Password));
+            Result<AuthorizationTokenResponse> result = await sender.Send(new LogInUserCommand(request.Email, request.Password));
             return result.IsSuccess ? Results.Ok(result.Value) : Results.Unauthorized();
         })
         .WithName("LogInUser")
         .WithTags("Users")
-        .Produces<AccessTokenResponse>(StatusCodes.Status200OK)
+        .Produces<AuthorizationTokenResponse>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status400BadRequest);
     }
 }

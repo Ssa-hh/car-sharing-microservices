@@ -7,4 +7,4 @@ using System.Threading.Tasks;
 
 namespace Ssa.CarSharing.Users.Application.Users.Commands.LogInUser;
 
-public record class LogInUserCommand(string Email, string Password) : ICommand<AccessTokenResponse>;
+public record class LogInUserCommand(string Email, string Password) : ICommand<AuthorizationTokenResponse>;

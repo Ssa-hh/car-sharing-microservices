@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using Ssa.CarSharing.Common.Domain;
-using Ssa.CarSharing.Users.infrastructure.Authentication.Models;
 using Ssa.CarSharing.Users.Application.Abstractions;
+using Ssa.CarSharing.Users.Application.Dtos;
+using Ssa.CarSharing.Users.infrastructure.Authentication.Models;
 using System.Net.Http.Json;
 
 namespace Ssa.CarSharing.Users.infrastructure.Authentication;
@@ -20,7 +21,7 @@ internal class JwtService : IJwtService
         _keycloakOptions = keycloakOptions.Value;
     }
 
-    public async Task<Result<string>> GetClientAccessTokenAsync(string email, string password, CancellationToken cancellationToken = default)
+    public async Task<Result<AuthorizationTokenDto>> GetClientAccessTokenAsync(string email, string password, CancellationToken cancellationToken = default)
     {
         var authorizationRequestParameters = new KeyValuePair<string, string>[]
         {
@@ -42,17 +43,22 @@ internal class JwtService : IJwtService
 
             AuthorizationToken? authorizationToken = await response.Content.ReadFromJsonAsync<AuthorizationToken>(cancellationToken);
 
+
+
             if (authorizationToken is null)
             {
-                return Result.Failure<string>(AuthenticationFailed);
+                return Result.Failure<AuthorizationTokenDto>(AuthenticationFailed);
             }
 
-            return authorizationToken.AccessToken;
+            AuthorizationTokenDto authorizationDto = new AuthorizationTokenDto(authorizationToken.AccessToken, authorizationToken.IdToken, authorizationToken.ExpireIn, 
+                authorizationToken.RefreshToken, authorizationToken.RefreshExpireIn, authorizationToken.TokenType);
+            
+            return Result.Success<AuthorizationTokenDto>(authorizationDto);
         }
         catch (HttpRequestException)
         {
 
-            return Result.Failure<string>(AuthenticationFailed);
+            return Result.Failure<AuthorizationTokenDto>(AuthenticationFailed);
         }
     }
 }

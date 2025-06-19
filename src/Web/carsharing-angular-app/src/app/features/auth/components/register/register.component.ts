@@ -26,8 +26,8 @@ export class RegisterComponent {
       <string>this.signUpForm.value.firstName, <string>this.signUpForm.value.lastName)
       .subscribe({
         next: () => {
-          console.log("Succesful sign up");
-          this.router.navigate(["signin"])
+          console.log("Successful login");
+          this.router.navigate(["login"])
         },
         error: (error:any) => console.log("Fail to sign up, error: ", error)
       });

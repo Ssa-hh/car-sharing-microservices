@@ -57,7 +57,7 @@ builder.AddNpmApp("angular-app", "../../Web/carsharing-angular-app")
     .WithReference(ridesApi)
     .WaitFor(usersApi)
     .WaitFor(ridesApi)
-    .WithHttpEndpoint(env:"PORT")
+    .WithHttpEndpoint(targetPort: 61809, env: "PORT")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile()
     ;
