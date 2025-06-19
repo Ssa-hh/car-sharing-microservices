@@ -15,17 +15,19 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
+  isLoading: boolean = false;
+
   constructor(private readonly authService: AuthService, private readonly destroyRef: DestroyRef, private readonly router: Router){}
 
   onSubmit() {
-    console.log("Form: ", this.signInForm.value);
+    this.isLoading = true;
     const subscription = this.authService.login(<string>this.signInForm.value.email, <string>this.signInForm.value.password)
       .subscribe({
         next: () => {
-          console.log("Successful sign up");
+          this.isLoading = false;
           this.router.navigate(["/"])
         },
-        error: (error:any) => console.log("Fail to sign in, error: ", error)
+        error: (error:any) => { this.isLoading = false; console.log("Fail to sign in, error: ", error); }
       });
 
       this.destroyRef.onDestroy(() => {

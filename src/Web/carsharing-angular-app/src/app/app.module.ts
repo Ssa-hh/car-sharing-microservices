@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 const icons = {
   search,
@@ -26,7 +27,8 @@ const icons = {
     NavMenuComponent,
     FooterComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

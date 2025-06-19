@@ -1,0 +1,9 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.spinner-border {
+    color: #47c7e1;
+}
