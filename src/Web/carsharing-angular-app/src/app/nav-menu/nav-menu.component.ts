@@ -24,4 +24,8 @@ export class NavMenuComponent implements OnInit {
 
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

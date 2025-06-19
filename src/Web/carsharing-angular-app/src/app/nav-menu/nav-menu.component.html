@@ -24,7 +24,7 @@
 		      </li>
           <li class="nav-item me-3" *ngIf="isAuthenticated">
             <span class="btn pe-0">{{userFirstName + ' ' + userLastName}}</span>
-            <button class="btn" type="button"><i-bs name="box-arrow-right" class="pe-1"></i-bs>Log out</button>
+            <button class="btn" type="button" (click)="logout()"><i-bs name="box-arrow-right" class="pe-1"></i-bs>Log out</button>
           </li>
         </ul>
       </div>

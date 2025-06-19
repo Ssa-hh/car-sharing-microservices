@@ -74,4 +74,8 @@ export class AuthService {
       this.user.next(null);
     }, expiresIn * 1000);
   }
+
+  logout() {
+    this.user.next(null);
+  }
 }
