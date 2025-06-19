@@ -1,0 +1,18 @@
+<ng-template #standardTpl let-message> {{message}} </ng-template>
+
+<ng-template #successTpl let-message> {{message}} </ng-template>
+
+<ng-template #dangerTpl let-message> {{message}} </ng-template>
+
+@for (toast of toastService.toasts; track toast) {
+    <ngb-toast
+	    [class]="toast.classname"
+		[autohide]="true"
+		[delay]="toast.delay || 5000"
+		(hidden)="toastService.remove(toast)"
+	>
+	    <ng-template [ngTemplateOutlet]="GetTemplate(toast.type)"
+			[ngTemplateOutletContext]="{ $implicit: toast.message }">
+		</ng-template>
+	</ngb-toast>
+}
