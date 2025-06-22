@@ -16,15 +16,15 @@ export class ToastService {
 		this.toasts = this.toasts.filter((t) => t !== toast);
 	}
 
-	showStandard(message: string) {
-		this.show({ type: 'info', message: message });
+	showStandard(message: string, title: string='') {
+		this.show({ type: 'info', message: message, title: title });
 	}
 
-	showSuccess(message: string) {
-		this.show({ type: 'success', message: message, classname: 'bg-success text-light', delay: 10000 });
+	showSuccess(message: string, title: string='') {
+		this.show({ type: 'success', message: message, classname: 'bg-success text-light', delay: 10000, title: title });
 	}
 
-	showDanger(message: string) {
-		this.show({ type:'error', message: message, classname: 'bg-danger text-light', delay: 15000 });
+	showDanger(message: string, title: string='') {
+		this.show({ type:'error', message: message, classname: 'bg-danger text-light', delay: 15000, title: title });
 	}
 }

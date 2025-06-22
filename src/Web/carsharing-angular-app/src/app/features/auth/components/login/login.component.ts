@@ -2,6 +2,7 @@ import { Component, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   isLoading: boolean = false;
 
-  constructor(private readonly authService: AuthService, private readonly destroyRef: DestroyRef, private readonly router: Router){}
+  constructor(private readonly authService: AuthService, private readonly destroyRef: DestroyRef, 
+    private readonly router: Router, private readonly toastService: ToastService){}
 
   onSubmit() {
     this.isLoading = true;
@@ -27,7 +29,10 @@ export class LoginComponent {
           this.isLoading = false;
           this.router.navigate(["/"])
         },
-        error: (error:any) => { this.isLoading = false; console.log("Fail to sign in, error: ", error); }
+        error: (error:any) => { 
+          this.isLoading = false; 
+          this.toastService.showDanger(error); 
+        }
       });
 
       this.destroyRef.onDestroy(() => {

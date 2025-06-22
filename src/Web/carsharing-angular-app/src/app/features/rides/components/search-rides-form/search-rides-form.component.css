@@ -1,0 +1,61 @@
+.controls-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.input-control-container {
+    flex-grow: 1;
+}
+
+.input-control-container #pickupCity {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0 1px 8px #00000014;
+    border: 1px solid #ffffff;
+}
+
+.input-control-container #dropOffCity {
+    border-radius: 0;
+}
+
+.input-control-container #rideDate {
+    border-radius: 0;
+}
+
+.input-control-container #calendarBtn {
+    border-radius: 0;
+}
+
+.input-control-container #pickupCity,
+.input-control-container #dropOffCity,
+.input-control-container #rideDate,
+.input-control-container #calendarBtn
+{
+    box-shadow: 0 1px 8px #00000014;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+}
+
+.input-control-container #calendarBtn:hover
+{
+    border: 1px solid #80808036;
+    background-color: #80808036;
+}
+
+.button-control-container button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    min-width: 150px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #47c7e1;
+    border-color: #47c7e1;
+}
+
+.button-control-container button:hover {
+    background-color: #0ac7ec;
+    border-color: #0ac7ec;
+}

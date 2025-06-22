@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Ssa.CarSharing.Rides.Domain.Rides;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace Ssa.CarSharing.Rides.Infrastructure.Database.Repositories;
 
@@ -53,16 +53,17 @@ internal class RideRepository : IRideRepository
         return result.ModifiedCount;
     }
 
-    public async Task<IEnumerable<Ride>> FindAsync(DateOnly? startDate, string? pickupCity, string? dropOffCity, bool onlyOpenOrComplete = true, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Ride>> FindAsync(DateOnly? rideDate, string? pickupCity, string? dropOffCity, bool onlyOpenOrComplete = true, CancellationToken cancellationToken = default)
     {
         var builder = Builders<Ride>.Filter;
 
         List<FilterDefinition<Ride>> criterias = new List<FilterDefinition<Ride>>();
 
-        if (startDate.HasValue)
+        if (rideDate.HasValue)
         {
-            var startDateTime = startDate.Value.ToDateTime(new TimeOnly());
-            criterias.Add(builder.Gte<DateTime>(r => r.StartsAtUtc, startDateTime));
+            var rideDateTime = rideDate.Value.ToDateTime(new TimeOnly());
+            criterias.Add(builder.Gte<DateTime>(r => r.StartsAtUtc, rideDateTime));
+            criterias.Add(builder.Lt<DateTime>(r => r.StartsAtUtc, rideDateTime.AddDays(1)));
         }
 
         if (!string.IsNullOrWhiteSpace(pickupCity))

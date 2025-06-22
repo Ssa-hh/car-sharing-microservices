@@ -7,4 +7,4 @@ using System.Threading.Tasks;
 
 namespace Ssa.CarSharing.Rides.Application.Rides.Queries;
 
-public record GetRidesQuery(DateOnly? StartDate, string PickupCity, string DropOffCity) :IQuery<List<RideDto>>;
+public record GetRidesQuery(DateOnly? RideDate, string PickupCity, string DropOffCity) :IQuery<List<RideDto>>;

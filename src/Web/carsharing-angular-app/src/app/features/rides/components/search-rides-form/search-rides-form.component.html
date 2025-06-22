@@ -1,0 +1,42 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="controls-container">
+        <div class="input-control-container">
+            <input
+                id="pickupCity"
+                class="form-control"
+                type="text"
+                placeholder="Leaving from"
+                formControlName="pickupCity"/>
+        </div>
+        <div class="input-control-container">
+            <input
+                id="dropOffCity"
+                class="form-control"
+                type="text"
+                placeholder="Going to"
+                formControlName="dropOffCity"/>
+        </div>
+        <div  class="input-control-container">
+			<div class="input-group">
+			<input
+                id="rideDate"
+				class="form-control"
+				[minDate] = "currentDateStruct"
+                [startDate] = "currentDateStruct"
+                formControlName="rideDate"
+				ngbDatepicker
+				#d="ngbDatepicker"
+			/>
+			<button id="calendarBtn" class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i-bs name="calendar3"></i-bs></button>
+		</div>
+		</div>
+        <div  class="button-control-container">
+            <button
+                class="btn btn-primary"
+                type="submit">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+

@@ -10,7 +10,7 @@
       </button>
       <div class="collapse navbar-collapse" id="appNavbarContent">
         <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-          <li class="nav-item me-3">
+          <li class="nav-item me-3" routerLink="/search">
             <button class="btn" type="button"><i-bs name="search" class="pe-1"></i-bs>Search</button>
           </li>
           <li ngbDropdown class="nav-item me-3" *ngIf="!isAuthenticated">
@@ -18,8 +18,8 @@
                   <i-bs name="person-circle" class="pe-1"></i-bs>
                 </a>
 			      <ul ngbDropdownMenu aria-labelledby="accountDropdown" class="dropdown-menu">
-                    <li><a ngbDropdownItem routerLink="login">Log in</a></li>
-                    <li><a ngbDropdownItem routerLink="register">Sign up</a></li>
+                    <li><a ngbDropdownItem routerLink="/login">Log in</a></li>
+                    <li><a ngbDropdownItem routerLink="/register">Sign up</a></li>
 			      </ul>
 		      </li>
           <li class="nav-item me-3" *ngIf="isAuthenticated">

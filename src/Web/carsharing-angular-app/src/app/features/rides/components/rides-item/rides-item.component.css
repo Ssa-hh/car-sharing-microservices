@@ -1,0 +1,118 @@
+/* Item level */
+a {
+    cursor: pointer;
+}
+
+.ride-item {
+    padding: 20px;
+    border: 1px solid #ffffff;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px #00000014;
+}
+
+.ride-item:hover {
+    border: 2px solid #47c7e1;
+}
+
+/* top level */
+.up-container {
+    display: flex;
+    border-bottom: 1px solid #ced4da;
+    padding-bottom: 10px;
+}
+
+/* top left*/
+.up-container .left-container {
+}
+
+.up-container .left-container .l2-r1 {
+    display: flex;
+    align-items: center;
+}
+
+.up-container .left-container .l3-r1 {
+    margin-right: 20px;
+}
+
+.up-container .left-container .l3-r2 {
+    display: flex;
+    position: relative;
+    margin-right: 10px;
+}
+
+.up-container .left-container .l3-r2::before {
+    content: "";
+    border-radius: 20px;
+    border: 1px black solid;
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+}
+
+.up-container .left-container .l3-r2::after {
+    content: "";
+    border-radius: 20px;
+    border: 1px black solid;
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+}
+
+.up-container .left-container .l3-r2 .duration {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.up-container .left-container .l2-r1 .duration-line{
+    display: inline-block;
+    width: 70px;
+    margin-right: 10px;
+}
+
+.up-container .left-container .l2-r2 {
+    display: flex;
+}
+
+.up-container .left-container .l2-r2 .pickup-city{
+    flex-grow: 1;
+}
+
+.up-container .left-container .l2-r2 .drop-off-city{
+    flex-grow: 1;
+    text-align: end;
+}
+
+/* top right */
+.up-container .right-container {
+    flex-grow: 1;
+    text-align: end;
+}
+
+/* down level*/
+.down-container {
+    display: flex;
+    padding-top: 15px;
+}
+
+.down-container .left-container {
+    flex-grow: 1;
+}
+
+.down-container .right-container {
+    flex-grow: 1;
+}
+
+i-bs[name=car-front-fill] {
+    color: #47c7e1;
+}

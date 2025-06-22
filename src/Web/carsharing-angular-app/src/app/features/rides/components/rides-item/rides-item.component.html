@@ -1,0 +1,33 @@
+<a>
+  <div class="ride-item">
+      <div class="up-container">
+        <div class="left-container">
+          <div class="l1-c1">
+            <div class="l2-r1">
+              <div class="l3-r1">{{pickupTime()}}</div>
+              <div class="l3-r2">
+                <hr class="duration-line"/>
+                <div class="duration">{{duration()}}</div>
+                <hr class="duration-line"/>
+              </div>
+              <div class="l3-r3">{{dropOffTime()}}</div>
+            </div>
+            <div class="l2-r2">
+              <div class="pickup-city">{{ride().pickupCity}}</div>
+              <div class="drop-off-city">{{ride().dropOffCity}}</div>
+            </div>
+          </div>
+          <div class="l1-c2"></div>
+        </div>
+        <div class="right-container">
+          <p>{{ride().numberOfAvailableSeats}} {{ride().numberOfAvailableSeats>1 ? "seats" : "seat"}} available</p>
+        </div>
+      </div>
+      <div class="down-container">
+        <div class="left-container">
+          <i-bs name="car-front-fill" class="pe-1"></i-bs> {{ride().driverFirstName}} {{ride().driverFirstName}}
+        </div>
+        <div class="right-container"></div>
+      </div>
+  </div>
+</a>

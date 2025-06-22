@@ -27,5 +27,5 @@ public static class ApiResults
         };
     }
 
-    private record Error(string Description);
+    private record Error(string Detail);
 }

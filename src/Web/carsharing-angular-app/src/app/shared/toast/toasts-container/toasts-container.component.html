@@ -10,6 +10,7 @@
 		[autohide]="true"
 		[delay]="toast.delay || 5000"
 		(hidden)="toastService.remove(toast)"
+		[header]="toast.title"
 	>
 	    <ng-template [ngTemplateOutlet]="GetTemplate(toast.type)"
 			[ngTemplateOutletContext]="{ $implicit: toast.message }">

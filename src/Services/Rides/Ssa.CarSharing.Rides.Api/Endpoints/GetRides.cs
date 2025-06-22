@@ -13,9 +13,9 @@ public class GetRides : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/rides", async (DateOnly? startDate, string pickupCity, string dropOffCity, ISender sender) =>
+        app.MapGet("/rides", async (DateOnly? rideDate, string pickupCity, string dropOffCity, ISender sender) =>
         {
-            Result<List<RideDto>> result = await sender.Send(new GetRidesQuery(startDate, pickupCity, dropOffCity));
+            Result<List<RideDto>> result = await sender.Send(new GetRidesQuery(rideDate, pickupCity, dropOffCity));
 
             return result.IsSuccess ? Results.Ok(result.Value) : ApiResults.Problem(result);
         })

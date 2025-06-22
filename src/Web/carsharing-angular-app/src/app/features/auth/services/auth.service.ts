@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap, exhaustMap } from 'rxjs';
+import { BehaviorSubject, tap, exhaustMap, catchError, throwError, Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
 
 interface LoginResponseData {
   accessToken: string;
@@ -16,7 +17,7 @@ interface LoginResponseData {
 export class AuthService {
   user = new BehaviorSubject<User|null>(null);
   
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly errorHandlingService: ErrorHandlingService) { }
 
   register(email: string, password: string, firstName: string, lastName: string) {
     return this.http
@@ -28,7 +29,8 @@ export class AuthService {
           firstName: firstName,
           lastName: lastName
         }
-      );
+      )
+      .pipe(catchError(this.errorHandlingService.handleError));
   }
 
   login(email: string, password: string) {
@@ -65,7 +67,8 @@ export class AuthService {
           user.firstName = userData.firstName;
           user.lastName = userData.lastName;
           this.user.next(user);
-        })
+        }),
+        catchError(this.errorHandlingService.handleError) // TODO: find how to handle only the error of the first request (login)
       )
   }
 

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient  } from '@angular/common/http';
-import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbNavModule, NgbCollapseModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
-import { search, personCircle, boxArrowRight } from 'ngx-bootstrap-icons';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { search, personCircle, boxArrowRight, carFrontFill, calendar3 } from 'ngx-bootstrap-icons';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,11 +15,16 @@ import { RegisterComponent } from './features/auth/components/register/register.
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 import { ToastsContainerComponent } from './shared/toast/toasts-container/toasts-container.component';
+import { SearchRidesComponent } from './features/rides/components/search-rides/search-rides.component';
+import { SearchRidesFormComponent } from './features/rides/components/search-rides-form/search-rides-form.component';
+import { RidesItemComponent } from './features/rides/components/rides-item/rides-item.component';
 
 const icons = {
   search,
   personCircle,
-  boxArrowRight
+  boxArrowRight,
+  carFrontFill,
+  calendar3
 };
 
 @NgModule({
@@ -31,7 +35,10 @@ const icons = {
     RegisterComponent,
     LoginComponent,
     LoadingSpinnerComponent,
-    ToastsContainerComponent
+    ToastsContainerComponent,
+    SearchRidesComponent,
+    SearchRidesFormComponent,
+    RidesItemComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,8 @@ const icons = {
     NgbCollapseModule,
     NgxBootstrapIconsModule.pick(icons),
     ReactiveFormsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgbDatepickerModule
   ],
   providers: [
     provideHttpClient()

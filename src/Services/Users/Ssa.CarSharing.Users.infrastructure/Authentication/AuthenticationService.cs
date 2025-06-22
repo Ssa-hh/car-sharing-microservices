@@ -40,6 +40,7 @@ internal class AuthenticationService : IAuthenticationService
 
         HttpResponseMessage response = await _httpClient.PostAsJsonAsync("users", userModel, cancellationToken);
 
+        // TODO: give more details about the error
         response.EnsureSuccessStatusCode();
 
         return ExtractIdentityIdFromLocationHeader(response);

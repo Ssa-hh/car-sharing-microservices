@@ -33,12 +33,11 @@ export class RegisterComponent {
         next: () => {
           this.isLoading = false;
           this.toastService.showSuccess("User registered successfully");
-          this.router.navigate(["login"])
+          this.router.navigate(["/login"])
         },
         error: (error:any) => {
           this.isLoading = false; 
-          console.log("Fail to sign up, error: ", error); 
-          this.toastService.showDanger("Fail to registered the user");
+          this.toastService.showDanger(error, "Fail to register user");
         }
       });
 
