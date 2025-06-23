@@ -11,7 +11,7 @@ The application consists of:
 
 Each service exposes REST APIs, and there are example requests in the Postman collection: Docs/Postman collection/Car sharing.postman_collection.json.
 
-![microservices](Docs\Images\resources_graph.png)
+![microservices](Docs/Images/resources_graph.png)
 
 ## Run The Project
 You will need the following tools:
@@ -29,13 +29,13 @@ You will need the following tools:
 4. Navigate to the CarSharing\src\Aspire\AppHost directory (this folder contains the AppHost.csproj file).
 5. Run the command: dotnet run
    
-   ![microservices](Docs\Images\run_dotnet_command.png)
+   ![microservices](Docs/Images/run_dotnet_command.png)
    
 7. Once the application starts, the dashboard URL will be displayed at the end of the logs.
 
-![microservices](Docs\Images\dashboard_url.png)
+![microservices](Docs/Images/dashboard_url.png)
 
-![microservices](Docs\Images\resources_table.png)
+![microservices](Docs/Images/resources_table.png)
 
 ## FrontEnd application
 
