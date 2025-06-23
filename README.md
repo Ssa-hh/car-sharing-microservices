@@ -43,5 +43,5 @@ Note: Even though the angular-app state is marked as started, the application ma
 
 ### Application screenshots
 
-![microservices](Docs\Images\carsharing_search_page.png)
+![microservices](Docs/Images/carsharing_search_page.png)
 
