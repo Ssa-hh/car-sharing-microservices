@@ -26,6 +26,6 @@ export class DatetimeService {
 
     let hours = Math.round((diffInMinutes - minutes)/60);
 
-    return hours + "h" + minutes;
+    return hours + "h" + minutes.toString().padStart(2, "0");
   }
 }

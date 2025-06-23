@@ -1,4 +1,6 @@
-<app-search-rides-form (ridesRetrieved)="getSearchedRides($event)"></app-search-rides-form>
+<div class="search-form-container">
+    <app-search-rides-form (ridesRetrieved)="getSearchedRides($event)"></app-search-rides-form>
+</div>
 <div class="list-container" *ngIf="rides() || rides().length>0">
     @for (ride of rides(); track ride.id) {
         <app-rides-item [ride]="ride"></app-rides-item>

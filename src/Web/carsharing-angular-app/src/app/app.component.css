@@ -3,6 +3,8 @@
 }
 
 .main-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
     min-height: calc(100vh - 113px); 
     max-width: 1000px;
 }

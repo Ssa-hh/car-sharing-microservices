@@ -12,9 +12,9 @@ export class RidesItemComponent {
   ride = input.required<Ride>();
   duration = computed(() => this.dateTimeService.GetDuration(this.ride().startsAtUtc, this.ride().endsAtUtc));
   pickupTime = computed(() => { let localPickupDate = this.dateTimeService.getLocalDateFromUtc(this.ride().startsAtUtc);
-    return localPickupDate.getHours() + "h" + localPickupDate.getMinutes()});
+    return localPickupDate.getHours() + "h" + localPickupDate.getMinutes().toString().padStart(2, "0")});
   dropOffTime = computed(() => { let localPickupDate = this.dateTimeService.getLocalDateFromUtc(this.ride().endsAtUtc);
-    return localPickupDate.getHours() + "h" + localPickupDate.getMinutes()});
+    return localPickupDate.getHours() + "h" + localPickupDate.getMinutes().toString().padStart(2, "0")});
   
   constructor(public readonly dateTimeService: DatetimeService) {}
 }
