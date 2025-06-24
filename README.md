@@ -16,7 +16,7 @@ Each service exposes REST APIs, and there are example requests in the Postman co
 ## Run The Project
 You will need the following tools:
 
-* [.Net Core 9](https://dotnet.microsoft.com/download/dotnet-core/8)
+* [.Net Core 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * [Node.js 18.19.1 or later](https://nodejs.org/en/download)
 * [Angular 19](https://angular.dev/installation)
