@@ -1,5 +1,5 @@
 import { Component, DestroyRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../shared/toast/toast.service';
@@ -12,10 +12,10 @@ import { ToastService } from '../../../../shared/toast/toast.service';
 })
 export class RegisterComponent {
   signUpForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', [Validators.required,Validators.minLength(6)]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
   });
 
   isLoading: boolean = false;
@@ -44,5 +44,45 @@ export class RegisterComponent {
       this.destroyRef.onDestroy(() => {
         subscription.unsubscribe();
       });
+  }
+
+  get email() {
+    return this.signUpForm.controls.email;
+  }
+
+  get password() {
+    return this.signUpForm.controls.password;
+  }
+
+  get emailIsInvalid() {
+    return (
+      this.signUpForm.controls.email.touched &&
+      this.signUpForm.controls.email.dirty &&
+      this.signUpForm.controls.email.invalid
+    );
+  }
+
+  get passwordIsInvalid() {
+    return (
+      this.signUpForm.controls.password.touched &&
+      this.signUpForm.controls.password.dirty &&
+      this.signUpForm.controls.password.invalid
+    );
+  }
+
+  get firstNameIsInvalid() {
+    return (
+      this.signUpForm.controls.firstName.touched &&
+      this.signUpForm.controls.firstName.dirty &&
+      this.signUpForm.controls.firstName.invalid
+    );
+  }
+
+  get lastNameIsInvalid() {
+    return (
+      this.signUpForm.controls.lastName.touched &&
+      this.signUpForm.controls.lastName.dirty &&
+      this.signUpForm.controls.lastName.invalid
+    );
   }
 }

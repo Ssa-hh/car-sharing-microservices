@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* Bootstrap app customisation */
+.app-btn-primary {
+    background-color: #47c7e1;
+    border-color: #47c7e1;
+    color: #ffffff;
+}
+
+.app-btn-primary:hover {
+    background-color: #0ac7ec;
+    border-color: #0ac7ec;
+    color: #ffffff;
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    background-color: #47c7e1;
+    border-color: #47c7e1;
+    color: #ffffff;
+    opacity: var(0.75);
+}

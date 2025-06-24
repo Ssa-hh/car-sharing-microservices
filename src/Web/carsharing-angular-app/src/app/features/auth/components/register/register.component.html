@@ -2,7 +2,7 @@
 <div class="row justify-content-center pt-5 pb-5" *ngIf="!isLoading">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
+      <div class="form-group mb-2">
         <label for="email">Email</label>
         <input
           type="email"
@@ -11,7 +11,7 @@
           formControlName="email"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group mb-2">
         <label for="password">Password</label>
         <input
           type="password"
@@ -20,7 +20,7 @@
           formControlName="password"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group mb-2">
         <label for="firstName">First name</label>
         <input
           type="text"
@@ -29,7 +29,7 @@
           formControlName="firstName"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group mb-2">
         <label for="lastName">Last name</label>
         <input
           type="text"
@@ -38,14 +38,47 @@
           formControlName="lastName"
         />
       </div>
-      <div>
+      <div class="submit-button-container mb-3">
         <button
-          class="btn btn-primary"
+          class="btn app-btn-primary"
           type="submit"
+          [disabled]="signUpForm.invalid"
         >
             Sign Up
         </button>
       </div>
+
+      @if (emailIsInvalid) {
+        @if(email.hasError('required'))
+        {
+          <div class="alert alert-danger mb-2" role="alert">Email is required.</div>
+        }
+
+        @if(email.hasError('email'))
+        {
+          <div class="alert alert-danger mb-2" role="alert">Email is not valid.</div>
+        }
+      }
+
+      @if (passwordIsInvalid) {
+        @if(password.hasError('required'))
+        {
+          <div class="alert alert-danger mb-2" role="alert">Password is required.</div>
+        }
+
+        @if(password.hasError('minlength'))
+        {
+          <div class="alert alert-danger" role="alert">Password must have at least 6 characters long.</div>
+        }
+      }
+
+      @if (firstNameIsInvalid) {
+        <div class="alert alert-danger mb-2" role="alert">First name is required.</div>
+      }
+
+      @if (lastNameIsInvalid) {
+        <div class="alert alert-danger mb-2" role="alert">Last name is required.</div>
+      }
     </form>
   </div>
 </div>

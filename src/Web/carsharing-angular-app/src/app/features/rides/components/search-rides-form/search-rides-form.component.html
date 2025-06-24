@@ -30,13 +30,20 @@
 			<button id="calendarBtn" class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i-bs name="calendar3"></i-bs></button>
 		</div>
 		</div>
-        <div  class="button-control-container">
+        <div  class="button-control-container mb-3">
             <button
-                class="btn btn-primary"
+                class="btn app-btn-primary"
                 type="submit">
                 Search
             </button>
         </div>
     </div>
+    @if (pickupCityIsInvalid) {
+        <div class="alert alert-danger mb-2" role="alert">Pickup city is required.</div>
+      }
+
+      @if (dropOffCityIsInvalid) {
+        <div class="alert alert-danger mb-2" role="alert">Drop off city is required.</div>
+      }
 </form>
 

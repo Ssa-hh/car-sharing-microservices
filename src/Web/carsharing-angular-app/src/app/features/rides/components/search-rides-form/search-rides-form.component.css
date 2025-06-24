@@ -49,11 +49,4 @@
     min-width: 150px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: #47c7e1;
-    border-color: #47c7e1;
-}
-
-.button-control-container button:hover {
-    background-color: #0ac7ec;
-    border-color: #0ac7ec;
 }
