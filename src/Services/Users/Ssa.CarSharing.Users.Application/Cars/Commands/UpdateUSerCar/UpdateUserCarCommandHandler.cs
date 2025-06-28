@@ -33,7 +33,7 @@ internal class UpdateUserCarCommandHandler : ICommandHandler<UpdateUserCarComman
         if (currentUser == null)
             return Result.Failure(Error.NotFound("Users.NotFound", "Current user not found"));
 
-        Result result = currentUser.UpdateCar(command.carId, command.Brand, command.Model, ColorTranslator.FromHtml(command.ColorHexCode));
+        Result result = currentUser.UpdateCar(command.carId, command.Brand, command.Model, command.NumberOfSeats, ColorTranslator.FromHtml(command.ColorHexCode));
 
         if(result.IsFailure)
             return result;

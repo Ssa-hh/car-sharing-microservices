@@ -12,7 +12,7 @@ public class UpdateUserCar : ICarterModule
     {
         app.MapPut("/users/me/cars/{id}", async (Guid id, UpdateUserCarRequest request, ISender sender) =>
         {
-            Result result = await sender.Send(new UpdateUserCarCommand(id, request.Brand, request.Model, request.ColorHexCode));
+            Result result = await sender.Send(new UpdateUserCarCommand(id, request.Brand, request.Model, request.NumberOfSeats, request.ColorHexCode));
 
             return result.IsSuccess ? Results.Ok() : ApiResults.Problem(result);
         })
@@ -22,5 +22,5 @@ public class UpdateUserCar : ICarterModule
         .WithDescription("Update user car");
     }
 
-    record UpdateUserCarRequest(string Brand, string Model, string ColorHexCode);
+    record UpdateUserCarRequest(string Brand, string Model, short NumberOfSeats, string ColorHexCode);
 }

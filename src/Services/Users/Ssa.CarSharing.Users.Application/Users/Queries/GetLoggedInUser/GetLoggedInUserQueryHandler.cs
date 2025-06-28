@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ssa.CarSharing.Users.Application.Users.Dtos;
 
 namespace Ssa.CarSharing.Users.Application.Users.Queries.GetLoggedInUser
 {
-    internal class GetLoggedInUserQueryHandler : IQueryHandler<GetLoggedInUserQuery, UserResponse>
+    internal class GetLoggedInUserQueryHandler : IQueryHandler<GetLoggedInUserQuery, UserDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserContext _userContext;
@@ -21,15 +22,15 @@ namespace Ssa.CarSharing.Users.Application.Users.Queries.GetLoggedInUser
             _userContext = userContext;
         }
 
-        public async Task<Result<UserResponse>> Handle(GetLoggedInUserQuery request, CancellationToken cancellationToken)
+        public async Task<Result<UserDto>> Handle(GetLoggedInUserQuery request, CancellationToken cancellationToken)
         {
             
-            User? user = await _userRepository.GetByEmailAsync(_userContext.UserEmail);
+            User? user = await _userRepository.GetByEmailAsync(_userContext.UserEmail, true);
 
             if (user == null) 
-                return Result.Failure<UserResponse>(Error.NotFound("User.NotFound", "The current user not found"));
+                return Result.Failure<UserDto>(Error.NotFound("User.NotFound", "The current user not found"));
 
-            return new Result<UserResponse>(new UserResponse { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email }, true, Error.None);
+            return new Result<UserDto>(UserDto.FromUser(user), true, Error.None);
         }
     }
 }

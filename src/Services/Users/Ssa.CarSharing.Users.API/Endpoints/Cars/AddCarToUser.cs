@@ -14,7 +14,7 @@ public class AddCarToUser : ICarterModule
     {
         app.MapPost("/users/me/cars", async (AddCarToUserRequest request, ISender sender) =>
         {
-            Result result = await sender.Send(new AddCarToUserCommand(request.Brand, request.Model, request.ColorHexCode));
+            Result result = await sender.Send(new AddCarToUserCommand(request.Brand, request.Model, request.NumberOfSeats, request.ColorHexCode));
             return result.IsSuccess ? Results.NoContent() : ApiResults.Problem(result);
         })
         .RequireAuthorization()
@@ -24,5 +24,5 @@ public class AddCarToUser : ICarterModule
         .ProducesProblem(StatusCodes.Status400BadRequest);
     }
 
-    private record AddCarToUserRequest(string Brand, string Model, string ColorHexCode);
+    private record AddCarToUserRequest(string Brand, string Model, short NumberOfSeats, string ColorHexCode);
 }

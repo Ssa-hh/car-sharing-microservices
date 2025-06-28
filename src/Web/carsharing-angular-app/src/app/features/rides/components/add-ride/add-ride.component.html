@@ -1,0 +1,246 @@
+<div *ngIf="isLoading"> <app-loading-spinner/> </div>
+<!-- 1. Authentication step-->
+ <div class="component-container" *ngIf="!isLoading">
+    <div class="step-container" *ngIf="currentStep()==steps.askAuthentication">
+        <p class="step-title">Log in:</p>
+        <div class="step-body">
+            <ul>
+                <li id="login-menu-item" routerLink="/login">
+                    <span>Log in</span> 
+                    <span id="loginMenuItemIcon"><i-bs name="chevron-right"></i-bs></span>
+                </li>
+                <li > <span class="me-2">Not a member yet?</span> <a routerLink="/register">Sign up</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <form [formGroup]="addRideForm">
+        <!-- 2. Pickup city step-->
+        <div class="component-container" *ngIf="currentStep()==steps.pickupCity">
+            <p class="step-title">Where are you leaving from?</p>
+            <div class="step-body">
+                <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter pickup city"
+                    formControlName="pickupCity"
+                    required
+                />
+            </div>
+        </div>
+
+        <!-- 3. Drop off city step-->
+        <div class="component-container" *ngIf="currentStep()==steps.dropOffCity">
+            <p class="step-title">Where are you going?</p>
+            <div class="step-body">
+                <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter drop off city"
+                    formControlName="dropOffCity"
+                    required
+                />
+            </div>
+        </div>
+
+        <!-- 4. Departure date step-->
+        <div class="component-container" *ngIf="currentStep()==steps.departureDate">
+            <p class="step-title">When are you leaving?</p>
+            <div  class="step-body input-group">
+                <input
+    		    		class="form-control"
+    		    		[minDate] = "currentDateStruct"
+                        [startDate] = "currentDateStruct"
+                        formControlName="departureDate"
+    		    		ngbDatepicker
+    		    		#d="ngbDatepicker"
+    		    	/>
+                <button id="calendarBtn" class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i-bs name="calendar3"></i-bs></button>
+            </div>
+        </div>
+
+        <!-- 5. Departure time step-->
+        <div class="component-container" *ngIf="currentStep()==steps.departureTime">
+            <p class="step-title">What time?</p>
+            <div class="step-body">
+                <ngb-timepicker
+                    class="app-custom"
+                    formControlName="departureTime"
+                />
+            </div>
+        </div>
+
+        <!-- 6. Ride duration step-->
+        <div class="component-container" *ngIf="currentStep()==steps.rideDuration">
+            <p class="step-title">How long is the trip?</p>
+            <div class="step-body">
+                <ngb-timepicker 
+                    class="app-custom"
+                    formControlName="rideDuration"
+                />
+            </div>
+        </div>
+
+        <!-- 7. Car step-->
+        <div class="component-container" formGroupName="car" *ngIf="currentStep()==steps.car">
+            <p class="step-title">Which car are you using?</p>
+            <div class="step-body">
+                <select (change)="selectedCarChanged($event.target)" class="form-control mb-2"  *ngIf="userCars() && userCars().length>0">
+                    <option>Choose a car</option>
+                    @for (car of userCars(); track car.id) {
+                        <option [value]="car.id">{{car.brand + " " + car.model}}</option>
+                    }
+                </select>
+                <div class="form-group row mb-2">
+                    <div class="col-2">
+                        <label for="brand">Brand</label>
+                    </div>
+                    <div class="col-10">
+                        <input
+                            id="brand" 
+                            type="text" 
+                            class="form-control"
+                            formControlName="brand"
+                        />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="col-2">
+                        <label for="model">Model</label>
+                    </div>
+                    <div class="col-10">
+                        <input
+                            id="model" 
+                            type="text" 
+                            class="form-control"
+                            formControlName="model"
+                        />
+                    </div>
+                    
+                    
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="col-9">
+                        <label for="numberOfSeats">Number of seats</label>
+                    </div>
+                    <div class="col-3">
+                        <input
+                            id="numberOfSeats" 
+                            type="number" 
+                            class="form-control"
+                            formControlName="numberOfSeats"
+                            min="2"
+                        />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-9">
+                        <label for="colorHexCode">Color</label>
+                    </div>
+                    <div class="col-3">
+                        <input style="width: 100%;"
+                            type="color" 
+                            class="form-control form-control-color" 
+                            id="colorHexCode" 
+                            title="Choose car color"
+                            formControlName="colorHexCode"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Number of proposed seats step-->
+        <div class="component-container" *ngIf="currentStep()==steps.numberOfProposedSeats">
+            <p class="step-title">How many seats are you proposing?</p>
+            <div class="step-body">
+                <input 
+                    type="number"
+                    class="form-control"
+                    placeholder="Enter the number of proposed seats"
+                    formControlName="numberOfProposedSeats"
+                    min="1"
+                    [max]="numberOfCarSeats()! -1"
+                    required
+                />
+            </div>
+        </div>
+
+        <!-- 9. Final step, publish the ride-->
+        <div class="component-container" *ngIf="currentStep()==steps.publishRide">
+           <p class="step-title">Ready to publish your ride?</p> 
+        </div>
+
+        <div id="buttonsContainer" class="mb-3 mt-4">
+            <button *ngIf="currentStep() > steps.pickupCity"
+                class="btn app-btn-light me-2"
+                (click)="goToPreviousStep()" >
+                Back
+            </button>
+            <button *ngIf="currentStep() != steps.publishRide"
+                class="btn app-btn-primary" 
+                (click)="goToNextStep()" 
+                >
+                Continue
+            </button>
+            <button *ngIf="currentStep()==steps.publishRide"
+                class="btn app-btn-primary"    
+                type="submit" 
+                [disabled]="addRideForm.invalid"
+                (click)="publishRide()">
+                Publish your ride
+            </button> 
+        </div>
+    </form>
+
+    <!-- Error messages-->
+    <!-- 2. Pickup city step-->
+    @if(isPickupCityInvalid && currentStep()==steps.pickupCity)
+    {
+        <div class="alert alert-danger mb-2" role="alert">Pickup city is required.</div>
+    }
+
+    <!-- 3. Drop off city step-->
+    @if(isDropOffCityInvalid && currentStep()==steps.dropOffCity)
+    {
+        <div class="alert alert-danger mb-2" role="alert">Drop off city is required.</div>
+    }
+
+    <!-- 4. Departure date step-->
+    @if(isDepartureDateInvalid && currentStep()==steps.departureDate)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The departure date must be today or later.</div>
+    }
+
+    <!-- 5. Departure time step-->
+    @if(isDepartureTimeInvalid && currentStep()==steps.departureTime)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The departure time must be in the future.</div>
+    }
+
+    <!-- 6. Ride duration step-->
+    @if(isRideDurationInvalid && currentStep()==steps.rideDuration)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The ride duration must be longer than 0.</div>
+    }
+
+    <!-- 7. Car step-->
+    @if(isCarBrandInvalid && currentStep()==steps.car)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The car brand is required.</div>
+    }
+    @if(isCarModelInvalid && currentStep()==steps.car)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The car model is required.</div>
+    }
+    @if(isCarNumberOfSeatsInvalid && currentStep()==steps.car)
+    {
+        <div class="alert alert-danger mb-2" role="alert">The car seats must have at least 2 seats.</div>
+    }
+
+    <!-- 8. Number of proposed seats step-->
+    @if(isCarNumberOfSeatsInvalid && currentStep()==steps.numberOfProposedSeats)
+    {
+        <div class="alert alert-danger mb-2" role="alert">You must propose at least 1 seat.</div>
+    }
+</div>

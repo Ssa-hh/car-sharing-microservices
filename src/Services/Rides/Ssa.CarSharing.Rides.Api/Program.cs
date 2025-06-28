@@ -29,6 +29,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
+    serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(2);
 var app = builder.Build();
 
 app.MapDefaultEndpoints();

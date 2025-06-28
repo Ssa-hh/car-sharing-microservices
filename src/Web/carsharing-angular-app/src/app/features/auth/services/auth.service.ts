@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap, exhaustMap, catchError, throwError, Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { Car } from '../../../shared/models/car.model';
 import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
 
 interface LoginResponseData {
@@ -51,21 +52,21 @@ export class AuthService {
               accessData.accessToken,
               accessData.expiresIn,
               accessData.firstName,
-              accessData.lastName
+              accessData.lastName,
+              []
             );
             this.user.next(user);
 
             this.autoLogout(accessData.expiresIn);
         }),
         exhaustMap(accessToken => {
-          console.log("Access token: ", accessToken);
           const headers = { 'Authorization': `Bearer ${accessToken.accessToken}` }
-          return this.http.get<{id: string, email: string, firstName:string, lastName: string}>('https://localhost:7281/users/me', {headers});
+          return this.http.get<{id: string, email: string, firstName:string, lastName: string, cars: Car[]}>('https://localhost:7281/users/me', {headers});
         }),
         tap(userData => {
-          console.log("User data: ", userData);
           user.firstName = userData.firstName;
           user.lastName = userData.lastName;
+          user.cars = userData.cars;
           this.user.next(user);
         }),
         catchError(this.errorHandlingService.handleError) // TODO: find how to handle only the error of the first request (login)

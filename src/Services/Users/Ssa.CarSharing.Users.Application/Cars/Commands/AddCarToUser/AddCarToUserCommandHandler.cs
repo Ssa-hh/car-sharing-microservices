@@ -28,10 +28,10 @@ namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
             User? user = await _userRepository.GetByEmailAsync(userEmail, true);
 
             if (user is null) 
-                return Result.Failure<UserResponse>(Error.NotFound("User.NotFound", "The current user not found"));
+                return Result.Failure(Error.NotFound("User.NotFound", "The current user not found"));
 
             Color carColor = command.ColorHexCode is null ? Color.Empty : ColorTranslator.FromHtml(command.ColorHexCode);
-            var newCar = user.AddCar(command.Brand, command.Model, carColor, user.Id);
+            var newCar = user.AddCar(command.Brand, command.Model, command.NumberOfSeats, carColor, user.Id);
 
             await _userRepository.AddCarAsync(newCar);
 

@@ -13,7 +13,7 @@ a {
 }
 
 .ride-item:hover {
-    border: 2px solid #47c7e1;
+    border: 2px solid #0dcaf0;
 }
 
 /* top level */
@@ -114,5 +114,5 @@ a {
 }
 
 i-bs[name=car-front-fill] {
-    color: #47c7e1;
+    color: #0dcaf0;
 }

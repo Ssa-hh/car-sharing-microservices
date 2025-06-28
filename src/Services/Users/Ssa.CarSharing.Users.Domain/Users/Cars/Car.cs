@@ -8,7 +8,7 @@ namespace Ssa.CarSharing.Users.Domain.Users.Cars;
 public class Car : Entity
 {
     // private int _colorRgb;
-    public Car(Guid id, string brand, string model, string colorHexCode, Guid ownerId) : base(id)
+    public Car(Guid id, string brand, string model, short numberOfSeats, string colorHexCode, Guid ownerId) : base(id)
     {
         if (!string.IsNullOrWhiteSpace(colorHexCode) && !IsValidHexColor(colorHexCode))
             throw new ArgumentException($"The car color \"{colorHexCode}\" is not a valid hexadecimal color code");
@@ -17,11 +17,14 @@ public class Car : Entity
         Model = model;
         ColorHexCode = colorHexCode;
         OwnerId = ownerId;
+        NumberOfSeats = numberOfSeats;
     }
 
     public string Brand { get; set; }
 
     public string Model { get; set; }
+
+    public short NumberOfSeats { get; set; }
 
     // Added fro EF to map color c property to database column
     public string ColorHexCode { get; private set; }
@@ -36,13 +39,14 @@ public class Car : Entity
     {
         ColorHexCode = ColorTranslator.ToHtml(color);
     }
-    internal static Car Create(string brand, string model, Color color, Guid ownerId)
+    internal static Car Create(string brand, string model, short numberOfSeats, Color color, Guid ownerId)
     {
         if (string.IsNullOrWhiteSpace(brand)) throw new ArgumentNullException(nameof(brand));
         if (string.IsNullOrWhiteSpace(model)) throw new ArgumentNullException(nameof(model));
+        if(numberOfSeats < 2) throw new ArgumentOutOfRangeException(nameof(numberOfSeats));
         if (ownerId == Guid.Empty) throw new ArgumentNullException(nameof(ownerId));
 
-        return new Car(Guid.NewGuid(), brand, model, ColorTranslator.ToHtml(color), ownerId);
+        return new Car(Guid.NewGuid(), brand, model, numberOfSeats, ColorTranslator.ToHtml(color), ownerId);
     }
 
     private static bool IsValidHexColor(string input)

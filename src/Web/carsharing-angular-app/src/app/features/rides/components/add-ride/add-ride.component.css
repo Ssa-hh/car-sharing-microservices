@@ -1,0 +1,50 @@
+.component-container {
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+}
+
+.step-title {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-width: 300px;
+    margin-bottom: 10px;
+}
+
+#login-menu-item {
+    display: flex;
+    cursor: pointer;
+    border-bottom: 1px solid #cccbcb;
+}
+
+#loginMenuItemIcon {
+    margin-left: auto;
+}
+
+.dd-item_text {
+    flex-grow: 1;
+}
+
+.dd-item_color {
+    margin-left: 15px;
+    height: 10px;
+    width: 20px;
+    border-radius: 4px;
+}
+
+.dd-item {
+    display: flex;
+    align-items: center;
+}
+
+#buttonsContainer {
+    justify-self: center;
+}

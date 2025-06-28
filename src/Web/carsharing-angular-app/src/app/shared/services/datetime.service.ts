@@ -7,12 +7,20 @@ export class DatetimeService {
 
   constructor() { }
 
+  // TODO: change the parameter type to date
   getLocalDateFromUtc(dateUtc: string): Date
   {
     let dateUtcAsDate = new Date(dateUtc);
     let offset = dateUtcAsDate.getTimezoneOffset();
 
     return new Date(dateUtcAsDate.getTime() - offset * 60000);
+  }
+
+  getUtcDateFromLocal(dateUtc: Date): Date
+  {
+    let offset = dateUtc.getTimezoneOffset();
+
+    return new Date(dateUtc.getTime() + offset * 60000);
   }
 
   GetDuration(startDate: string, endDate:string):string {

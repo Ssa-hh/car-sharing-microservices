@@ -44,11 +44,11 @@ namespace Ssa.CarSharing.Users.Domain.Users
             return user;
         }
 
-        public Car AddCar(string brand, string model, Color color, Guid ownerId)
+        public Car AddCar(string brand, string model, short numberOfSeats, Color color, Guid ownerId)
         {
             if (ownerId != Id) throw new InvalidOperationException("Car does not belong to this user.");
 
-            Car car = Car.Create(brand, model, color, ownerId);
+            Car car = Car.Create(brand, model, numberOfSeats, color, ownerId);
             _cars.Add(car);
 
             return car;
@@ -66,7 +66,7 @@ namespace Ssa.CarSharing.Users.Domain.Users
             return Result.Success();
         }
 
-        public Result UpdateCar(Guid carId, string brand, string model, Color color)
+        public Result UpdateCar(Guid carId, string brand, string model, short numberOfSeats, Color color)
         {
             var carToUpdate = Cars.FirstOrDefault(c=>  c.Id == carId);
 
@@ -75,6 +75,7 @@ namespace Ssa.CarSharing.Users.Domain.Users
 
             carToUpdate.Brand = brand;
             carToUpdate.Model = model;
+            carToUpdate.NumberOfSeats = numberOfSeats;
             carToUpdate.SetColor(color);
 
             return Result.Success();

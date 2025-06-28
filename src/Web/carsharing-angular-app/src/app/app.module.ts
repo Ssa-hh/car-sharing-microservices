@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient  } from '@angular/common/http';
 import { NgbModule, NgbNavModule, NgbCollapseModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
-import { search, personCircle, boxArrowRight, carFrontFill, calendar3 } from 'ngx-bootstrap-icons';
+import { search, personCircle, boxArrowRight, carFrontFill, calendar3, plusCircle, chevronRight } from 'ngx-bootstrap-icons';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,13 +18,16 @@ import { ToastsContainerComponent } from './shared/toast/toasts-container/toasts
 import { SearchRidesComponent } from './features/rides/components/search-rides/search-rides.component';
 import { SearchRidesFormComponent } from './features/rides/components/search-rides-form/search-rides-form.component';
 import { RidesItemComponent } from './features/rides/components/rides-item/rides-item.component';
+import { AddRideComponent } from './features/rides/components/add-ride/add-ride.component';
 
 const icons = {
   search,
   personCircle,
   boxArrowRight,
   carFrontFill,
-  calendar3
+  calendar3,
+  plusCircle,
+  chevronRight
 };
 
 @NgModule({
@@ -38,7 +41,8 @@ const icons = {
     ToastsContainerComponent,
     SearchRidesComponent,
     SearchRidesFormComponent,
-    RidesItemComponent
+    RidesItemComponent,
+    AddRideComponent
   ],
   imports: [
     BrowserModule,

@@ -7,4 +7,4 @@ using System.Threading.Tasks;
 
 namespace Ssa.CarSharing.Users.Application.Cars.Commands.UpdateUSerCar;
 
-public record UpdateUserCarCommand(Guid carId, string Brand, string Model, string ColorHexCode) : ICommand;
+public record UpdateUserCarCommand(Guid carId, string Brand, string Model, short NumberOfSeats, string ColorHexCode) : ICommand;

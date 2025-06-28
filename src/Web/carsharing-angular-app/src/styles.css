@@ -1,19 +1,55 @@
+/* Components common styles */
+/****************************/
+.component-container{
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+
 /* Bootstrap app customisation */
+/*******************************/
 .app-btn-primary {
-    background-color: #47c7e1;
-    border-color: #47c7e1;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
     color: #ffffff;
 }
 
 .app-btn-primary:hover {
-    background-color: #0ac7ec;
-    border-color: #0ac7ec;
+    background-color: #0aa2c0;
+    border-color: #0aa2c0;
     color: #ffffff;
 }
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {
-    background-color: #47c7e1;
-    border-color: #47c7e1;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
     color: #ffffff;
     opacity: var(0.75);
+}
+
+.app-btn-light {
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    color: black;
+}
+
+.app-btn-light:hover {
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+    color: black;
+}
+
+/* time picker customisation */
+.app-custom button {
+    color: #0dcaf0;
+}
+.app-custom button:hover {
+    color: #0aa2c0;
 }
