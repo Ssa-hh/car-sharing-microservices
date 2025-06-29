@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../shared/toast/toast.service';
+import { pipe, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -27,22 +28,37 @@ export class RegisterComponent {
 
   onSubmit() {
     this.isLoading = true;
-    const subscription = this.authService.register(<string>this.signUpForm.value.email, <string>this.signUpForm.value.password, 
+    let loginSubscription: Subscription
+    const registerSubscription = this.authService.register(<string>this.signUpForm.value.email, <string>this.signUpForm.value.password, 
       <string>this.signUpForm.value.firstName, <string>this.signUpForm.value.lastName)
       .subscribe({
         next: () => {
           this.isLoading = false;
           this.toastService.showSuccess("User registered successfully");
-          this.router.navigate(["/login"])
+          loginSubscription = this.authService.login(<string>this.signUpForm.value.email, <string>this.signUpForm.value.password)
+            .subscribe({
+              next: () => {
+                this.isLoading = false;
+                this.router.navigate(["/"])
+              },
+              error: (error:any) => { 
+                this.isLoading = false; 
+                this.toastService.showDanger(error, "Fail to login user");
+                this.router.navigate(["/login"]); 
+              }
+            })
         },
         error: (error:any) => {
           this.isLoading = false; 
           this.toastService.showDanger(error, "Fail to register user");
         }
       });
-
+      
       this.destroyRef.onDestroy(() => {
-        subscription.unsubscribe();
+        registerSubscription.unsubscribe();
+
+        if(loginSubscription)
+          loginSubscription.unsubscribe();
       });
   }
 
