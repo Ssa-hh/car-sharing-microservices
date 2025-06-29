@@ -50,7 +50,7 @@ export class AddRideComponent implements OnInit {
         brand: new FormControl('', Validators.required),
         model: new FormControl('', Validators.required),
         numberOfSeats: this.numberOfCarSeatsFC,
-        colorHexCode: new FormControl('')
+        colorHexCode: new FormControl<string|null|undefined>('')
       }),
       numberOfProposedSeats: this.numberOfProposedSeatsFC
     }

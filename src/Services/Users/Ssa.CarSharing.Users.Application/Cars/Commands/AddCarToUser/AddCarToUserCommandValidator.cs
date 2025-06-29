@@ -13,7 +13,7 @@ internal class AddCarToUserCommandValidator : AbstractValidator<AddCarToUserComm
         RuleFor(x => x.NumberOfSeats).GreaterThanOrEqualTo((short)2)
             .WithMessage("The car must have a minimum of two seats.");
         RuleFor(x => x.ColorHexCode).Matches("^#(?:[0-9a-fA-F]{3}){1,2}$")
-            .When(x =>string.IsNullOrWhiteSpace(x.ColorHexCode))
+            .When(x =>!string.IsNullOrWhiteSpace(x.ColorHexCode))
             .WithMessage("Color must be a valid hex color code.");
     }
 }

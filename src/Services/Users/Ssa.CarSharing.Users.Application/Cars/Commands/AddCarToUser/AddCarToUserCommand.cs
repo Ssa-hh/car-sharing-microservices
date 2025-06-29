@@ -8,4 +8,4 @@ using System.Threading.Tasks;
 
 namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser;
 
-public record AddCarToUserCommand(string Brand, string Model, short NumberOfSeats, string ColorHexCode) : ICommand;
+public record AddCarToUserCommand(string Brand, string Model, short NumberOfSeats, string ColorHexCode) : ICommand<Guid>;

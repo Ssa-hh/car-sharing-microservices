@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
 {
-    internal class AddCarToUserCommandHandler : ICommandHandler<AddCarToUserCommand>
+    internal class AddCarToUserCommandHandler : ICommandHandler<AddCarToUserCommand, Guid>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -21,14 +21,14 @@ namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
             _userRepository = userRepository;
             _usrContext = usrContext;
         }
-        public async Task<Result> Handle(AddCarToUserCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(AddCarToUserCommand command, CancellationToken cancellationToken)
         {
             string userEmail = _usrContext.UserEmail;
 
             User? user = await _userRepository.GetByEmailAsync(userEmail, true);
 
             if (user is null) 
-                return Result.Failure(Error.NotFound("User.NotFound", "The current user not found"));
+                return Result.Failure<Guid>(Error.NotFound("User.NotFound", "The current user not found"));
 
             Color carColor = command.ColorHexCode is null ? Color.Empty : ColorTranslator.FromHtml(command.ColorHexCode);
             var newCar = user.AddCar(command.Brand, command.Model, command.NumberOfSeats, carColor, user.Id);
@@ -37,7 +37,7 @@ namespace Ssa.CarSharing.Users.Application.Cars.Commands.AddCarToUser
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return Result.Success();
+            return Result.Success(newCar.Id);
         }
     }
 }

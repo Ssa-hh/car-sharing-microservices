@@ -82,4 +82,31 @@ export class AuthService {
   logout() {
     this.user.next(null);
   }
+
+  addCar(brand: string, model: string, numberOfSeats: number, colorHexCode?: string|null) {
+    const headers = { 'Authorization': `Bearer ${this.user.value?.accessToken}` }
+    console.log("colorHexCode", colorHexCode);
+    console.log(colorHexCode);
+    console.log("type of colorHexCode", typeof colorHexCode);
+    return this.http
+      .post<string>(
+        'https://localhost:7281/users/me/cars',
+        {
+          brand: brand,
+          model: model,
+          numberOfSeats: numberOfSeats,
+          colorHexCode: colorHexCode
+        },
+        { headers }
+      )
+      .pipe(
+        tap(carId => {
+          const newCar:Car = {id: carId, brand: brand, model: model, numberOfSeats: numberOfSeats, colorHexCode: colorHexCode};
+          this.user.value?.cars?? [];
+          this.user.value?.cars.push(newCar);
+          this.user.next(this.user.value);
+        }),
+        catchError(this.errorHandlingService.handleError)
+      );
+  }
 }

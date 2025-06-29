@@ -19,6 +19,7 @@ import { SearchRidesComponent } from './features/rides/components/search-rides/s
 import { SearchRidesFormComponent } from './features/rides/components/search-rides-form/search-rides-form.component';
 import { RidesItemComponent } from './features/rides/components/rides-item/rides-item.component';
 import { AddRideComponent } from './features/rides/components/add-ride/add-ride.component';
+import { AddUserCarComponent } from './features/auth/components/add-user-car/add-user-car.component';
 
 const icons = {
   search,
@@ -42,7 +43,8 @@ const icons = {
     SearchRidesComponent,
     SearchRidesFormComponent,
     RidesItemComponent,
-    AddRideComponent
+    AddRideComponent,
+    AddUserCarComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,9 @@
           <li class="nav-item me-3" routerLink="/search">
             <button class="btn" type="button"><i-bs name="search" class="pe-1"></i-bs>Search</button>
           </li>
+          <li class="nav-item me-3" routerLink="/addusercar" *ngIf="isAuthenticated">
+            <button class="btn" type="button"><i-bs name="car-front-fill" class="pe-1"></i-bs>Add a car</button>
+          </li>
           <li class="nav-item me-3" routerLink="/addride">
             <button class="btn" type="button"><i-bs name="plus-circle" class="pe-1"></i-bs>Publish a ride</button>
           </li>

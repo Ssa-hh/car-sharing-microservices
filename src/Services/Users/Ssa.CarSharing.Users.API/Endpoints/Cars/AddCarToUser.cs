@@ -14,8 +14,8 @@ public class AddCarToUser : ICarterModule
     {
         app.MapPost("/users/me/cars", async (AddCarToUserRequest request, ISender sender) =>
         {
-            Result result = await sender.Send(new AddCarToUserCommand(request.Brand, request.Model, request.NumberOfSeats, request.ColorHexCode));
-            return result.IsSuccess ? Results.NoContent() : ApiResults.Problem(result);
+            Result<Guid> result = await sender.Send(new AddCarToUserCommand(request.Brand, request.Model, request.NumberOfSeats, request.ColorHexCode));
+            return result.IsSuccess ? Results.Ok(result.Value) : ApiResults.Problem(result);
         })
         .RequireAuthorization()
         .WithName("AddCarToUser")
