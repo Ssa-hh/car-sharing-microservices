@@ -4,6 +4,7 @@ import { BehaviorSubject, tap, exhaustMap, catchError, throwError, Observable } 
 import { User } from '../models/user.model';
 import { Car } from '../../../shared/models/car.model';
 import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
+import { Router } from '@angular/router';
 
 interface LoginResponseData {
   accessToken: string;
@@ -19,7 +20,7 @@ export class AuthService {
   user = new BehaviorSubject<User|null>(null);
   private tokenExpirationTimer: any
   
-  constructor(private readonly http: HttpClient, private readonly errorHandlingService: ErrorHandlingService) { }
+  constructor(private http: HttpClient, private errorHandlingService: ErrorHandlingService, private router: Router) { }
 
   register(email: string, password: string, firstName: string, lastName: string) {
     return this.http
@@ -100,12 +101,14 @@ export class AuthService {
 
   autoLogout(expiresIn: number) {
     this.tokenExpirationTimer = setTimeout(() => {
-      this.user.next(null);
+      this.logout();
     }, expiresIn * 1000);
   }
 
   logout() {
     this.user.next(null);
+    this.router.navigate(['/login']);
+    
     if(this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
