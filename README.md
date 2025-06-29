@@ -47,15 +47,15 @@ Most endpoints require authentication via a Bearer Token, except for the followi
 
 To obtain an access token, use the Login User endpoint. See the example below.
 
-### Register a user example
+### Register a user
 
 ![](Docs/Images/register_user_api.png)
 
-### Login and get access token example
+### Login and get access token
 
 ![](Docs/Images/get_access_token.png)
 
-### Add a car to a user example
+### Add a car to a user
 
 Set access token
 ![](Docs/Images/set_bearer_token.png)
@@ -63,7 +63,7 @@ Set access token
 Add a car
 ![](Docs/Images/add_car_to_user.png)
 
-### Add a ride example
+### Add a ride
 
 Set access token
 ![](Docs/Images/set_bearer_token.png)
@@ -71,7 +71,7 @@ Set access token
 Add a ride
 ![](Docs/Images/add_a_ride.png)
 
-### Search rides example
+### Search rides
 
 ![](Docs/Images/search_for_rides.png)
 
@@ -79,7 +79,45 @@ Add a ride
 
 Note: Even though the angular-app state is marked as started, the application may take some time to fully initialize.
 
-### Application screenshots
+### Features screenshots
 
-![](Docs/Images/carsharing_search_page.png)
+#### Register user
+
+![](Docs/Images/register_user_step_1.png)
+
+![](Docs/Images/register_user_step_2.png)
+
+#### Add car to user
+
+![](Docs/Images/add_a_car_to_user.png)
+
+#### Add ride
+
+Step 1
+![](Docs/Images/publish_a_ride_step_1.png)
+
+Step 2
+![](Docs/Images/publish_a_ride_step_2.png)
+
+Step 3
+![](Docs/Images/publish_a_ride_step_3.png)
+
+Step 4
+![](Docs/Images/publish_a_ride_step_4.png)
+
+Step 5
+![](Docs/Images/publish_a_ride_step_5.png)
+
+Step 6
+![](Docs/Images/publish_a_ride_step_6.png)
+
+Step 7
+![](Docs/Images/publish_a_ride_step_7.png)
+
+Step 8
+![](Docs/Images/publish_a_ride_step_8.png)
+
+#### Search rides
+
+![](Docs/Images/search_a_ride.png)
 
