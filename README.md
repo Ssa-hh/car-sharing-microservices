@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-The main purpose of this repository is to build a carsharing application to demonstrate microservices architecture, Clean Architecture, and the CQRS pattern, implemented using the .NET Aspire development stack.
+The main purpose of this repository is to build a carsharing application to demonstrate microservices architecture, Clean Architecture, and the CQRS pattern, using the .NET Aspire development stack.
 The application consists of:
 - Two microservices: Users and Rides
 - A web frontend developed with Angular 19
