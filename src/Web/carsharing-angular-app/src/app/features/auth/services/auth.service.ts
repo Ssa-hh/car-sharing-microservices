@@ -7,7 +7,7 @@ import { ErrorHandlingService } from '../../../shared/services/error-handling.se
 
 interface LoginResponseData {
   accessToken: string;
-  expiresIn: number;
+  expireIn: number;
   firstName: string;
   lastName: string;
 }
@@ -17,6 +17,7 @@ interface LoginResponseData {
 })
 export class AuthService {
   user = new BehaviorSubject<User|null>(null);
+  private tokenExpirationTimer: any
   
   constructor(private readonly http: HttpClient, private readonly errorHandlingService: ErrorHandlingService) { }
 
@@ -47,17 +48,18 @@ export class AuthService {
       ).pipe(
         tap(accessData => 
           {
-            console.log("Login response data: ", accessData);
+            let tokenExpirationDate = new Date();
+            tokenExpirationDate.setSeconds(tokenExpirationDate.getSeconds() + accessData.expireIn);
             user = new User(
               accessData.accessToken,
-              accessData.expiresIn,
+              tokenExpirationDate,
               accessData.firstName,
               accessData.lastName,
               []
             );
             this.user.next(user);
 
-            this.autoLogout(accessData.expiresIn);
+            this.autoLogout(accessData.expireIn);
         }),
         exhaustMap(accessToken => {
           const headers = { 'Authorization': `Bearer ${accessToken.accessToken}` }
@@ -68,26 +70,51 @@ export class AuthService {
           user.lastName = userData.lastName;
           user.cars = userData.cars;
           this.user.next(user);
+          sessionStorage.setItem('userData', JSON.stringify(user));
         }),
         catchError(this.errorHandlingService.handleError) // TODO: find how to handle only the error of the first request (login)
       )
   }
 
+  autoLogin() {
+    const userDataString = sessionStorage.getItem('userData');
+    
+    if(!userDataString) {
+      return;
+    }
+    
+    const userData: {_accessToken: string, _tokenExpirationDate: string, firstName: string, 
+              lastName: string, cars: Car[]} = JSON.parse(userDataString);
+    if(!userData) {
+      return;
+    }
+
+    const loadedUser = new User(userData._accessToken, new Date(userData._tokenExpirationDate), userData.firstName, userData.lastName, userData.cars);
+
+    if(loadedUser.accessToken) {
+      this.user.next(loadedUser);
+      let expirationDuration = (new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()) / 1000; // in seconds
+      this.autoLogout(expirationDuration);
+    }
+  }
+
   autoLogout(expiresIn: number) {
-    setTimeout(() => {
+    this.tokenExpirationTimer = setTimeout(() => {
       this.user.next(null);
     }, expiresIn * 1000);
   }
 
   logout() {
     this.user.next(null);
+    if(this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
   }
 
   addCar(brand: string, model: string, numberOfSeats: number, colorHexCode?: string|null) {
     const headers = { 'Authorization': `Bearer ${this.user.value?.accessToken}` }
-    console.log("colorHexCode", colorHexCode);
-    console.log(colorHexCode);
-    console.log("type of colorHexCode", typeof colorHexCode);
+
     return this.http
       .post<string>(
         'https://localhost:7281/users/me/cars',
