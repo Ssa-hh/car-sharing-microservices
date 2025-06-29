@@ -11,12 +11,12 @@ The application consists of:
 
 Each service exposes REST APIs, and there are example requests in the Postman collection: Docs/Postman collection/Car sharing.postman_collection.json.
 
-![microservices](Docs\Images\resources_graph.png)
+![microservices](Docs/Images/resources_graph.png)
 
 ## Run The Project
 You will need the following tools:
 
-* [.Net Core 9](https://dotnet.microsoft.com/download/dotnet-core/8)
+* [.Net Core 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 * [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * [Node.js 18.19.1 or later](https://nodejs.org/en/download)
 * [Angular 19](https://angular.dev/installation)
@@ -29,13 +29,13 @@ You will need the following tools:
 4. Navigate to the CarSharing\src\Aspire\AppHost directory (this folder contains the AppHost.csproj file).
 5. Run the command: dotnet run
    
-   ![microservices](Docs\Images\run_dotnet_command.png)
+   ![microservices](Docs/Images/run_dotnet_command.png)
    
 7. Once the application starts, the dashboard URL will be displayed at the end of the logs.
 
-![microservices](Docs\Images\dashboard_url.png)
+![microservices](Docs/Images/dashboard_url.png)
 
-![microservices](Docs\Images\resources_table.png)
+![microservices](Docs/Images/resources_table.png)
 
 ## FrontEnd application
 
@@ -43,5 +43,5 @@ Note: Even though the angular-app state is marked as started, the application ma
 
 ### Application screenshots
 
-![microservices](Docs\Images\carsharing_search_page.png)
+![microservices](Docs/Images/carsharing_search_page.png)
 
