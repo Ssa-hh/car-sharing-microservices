@@ -48,7 +48,6 @@ Most endpoints require authentication via a Bearer Token, except for the followi
 To obtain an access token, use the Login User endpoint. See the example below.
 
 ### Register a user
-
 ![](Docs/Images/register_user_api.png)
 
 ### Login and get access token
