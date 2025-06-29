@@ -11,7 +11,7 @@ The application consists of:
 
 Each service exposes REST APIs, and there are example requests in the Postman collection: Docs/Postman collection/Car sharing.postman_collection.json.
 
-![microservices](Docs/Images/resources_graph.png)
+![](Docs/Images/resources_graph.png)
 
 ## Run The Project
 You will need the following tools:
@@ -29,13 +29,51 @@ You will need the following tools:
 4. Navigate to the CarSharing\src\Aspire\AppHost directory (this folder contains the AppHost.csproj file).
 5. Run the command: dotnet run
    
-   ![microservices](Docs/Images/run_dotnet_command.png)
+   ![](Docs/Images/run_dotnet_command.png)
    
 7. Once the application starts, the dashboard URL will be displayed at the end of the logs.
 
-![microservices](Docs/Images/dashboard_url.png)
+![](Docs/Images/dashboard_url.png)
 
-![microservices](Docs/Images/resources_table.png)
+![](Docs/Images/resources_table.png)
+
+## Service APIs and Postman request Examples
+
+Users and Rides services expose REST APIs. Example requests for each endpoint are included in the Postman collection located at: Docs/Postman collection/Car sharing.postman_collection.json.
+Most endpoints require authentication via a Bearer Token, except for the following endpoints:
+- Register User
+- Login User
+- Search Rides
+
+To obtain an access token, use the Login User endpoint. See the example below.
+
+### Register a user example
+
+![](Docs/Images/register_user_api.png)
+
+### Login and get access token example
+
+![](Docs/Images/get_access_token.png)
+
+### Add a car to a user example
+
+Set access token
+![](Docs/Images/set_bearer_token.png)
+
+Add a car
+![](Docs/Images/add_car_to_user.png)
+
+### Add a ride example
+
+Set access token
+![](Docs/Images/set_bearer_token.png)
+
+Add a ride
+![](Docs/Images/add_a_ride.png)
+
+### Search rides example
+
+![](Docs/Images/search_for_rides.png)
 
 ## FrontEnd application
 
@@ -43,5 +81,5 @@ Note: Even though the angular-app state is marked as started, the application ma
 
 ### Application screenshots
 
-![microservices](Docs/Images/carsharing_search_page.png)
+![](Docs/Images/carsharing_search_page.png)
 
