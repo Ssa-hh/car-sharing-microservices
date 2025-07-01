@@ -9,28 +9,44 @@ import { AuthGuard } from './features/auth/services/auth-guard';
 export const routes: Routes = [
   {
     path: '',
-    component: SearchRidesComponent
+    redirectTo: 'rides/search',
+    pathMatch: 'full'
   },
   {
-    path: 'search', 
-    component: SearchRidesComponent
+    path: 'rides',
+    children: [
+      {
+        path:  'search', 
+        component: SearchRidesComponent
+      },
+      {
+        path: 'new',
+        component: AddRideComponent
+      }
+    ]
   },
   {
-    path: 'register', 
-    component: RegisterComponent
-  },
-  {
-    path: 'login', 
-    component: LoginComponent
-  },
-  {
-    path: 'addride', 
-    component: AddRideComponent
-  },
-  {
-    path: 'addusercar',
-    component: AddUserCarComponent, // Assuming this is the component for adding a car
-    canActivate: [AuthGuard]
+    path: 'user',
+    children: [
+      {
+        path: 'register', 
+        component: RegisterComponent
+      },
+      {
+        path: 'login', 
+        component: LoginComponent
+      },
+      {
+        path: 'cars',
+        children: [
+          {
+            path: 'new',
+            component: AddUserCarComponent, // Assuming this is the component for adding a car
+            canActivate: [AuthGuard]
+          },
+        ]
+      }
+    ]
   },
   {
     path: '**',

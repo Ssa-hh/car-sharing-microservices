@@ -44,7 +44,7 @@ export class RegisterComponent {
               error: (error:any) => { 
                 this.isLoading = false; 
                 this.toastService.showDanger(error, "Fail to login user");
-                this.router.navigate(["/login"]); 
+                this.router.navigate(["/user/login"]); 
               }
             })
         },

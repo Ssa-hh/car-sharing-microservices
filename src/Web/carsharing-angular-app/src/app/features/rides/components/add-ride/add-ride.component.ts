@@ -146,7 +146,7 @@ export class AddRideComponent implements OnInit {
                         next: () => {
                           this.isLoading = false;
                           this.toastService.showSuccess("Ride published successfully");
-                          this.router.navigate(["/search"]);
+                          this.router.navigate(["/rides/search"]);
                         },
                         error: (error) => {
                           this.isLoading = false; 
