@@ -1,3 +1,12 @@
 .custom-container {
     width: 1000px;
 }
+
+.app-nav-dropdown {
+    position: relative;
+}
+
+.app-nav-dropdown .dropdown-menu {
+    position: absolute;
+    left: -120px;
+}
