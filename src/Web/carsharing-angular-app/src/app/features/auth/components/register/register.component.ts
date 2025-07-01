@@ -1,9 +1,9 @@
 import { Component, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../../shared/toast/toast.service';
-import { pipe, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -23,8 +23,9 @@ export class RegisterComponent {
 
   constructor(private readonly authService: AuthService, 
     private readonly destroyRef: DestroyRef,
-     private readonly router: Router,
-    private readonly toastService: ToastService){}
+    private readonly router: Router,
+    private readonly toastService: ToastService,
+    private route: ActivatedRoute){}
 
   onSubmit() {
     this.isLoading = true;
@@ -38,8 +39,9 @@ export class RegisterComponent {
           loginSubscription = this.authService.login(<string>this.signUpForm.value.email, <string>this.signUpForm.value.password)
             .subscribe({
               next: () => {
+                const returnUrl = this.route.snapshot.queryParamMap.get("returnUrl") || '/';
                 this.isLoading = false;
-                this.router.navigate(["/"])
+                this.router.navigate([returnUrl])
               },
               error: (error:any) => { 
                 this.isLoading = false; 

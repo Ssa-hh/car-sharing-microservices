@@ -1,7 +1,7 @@
 import { Component, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../../shared/toast/toast.service';
 
 @Component({
@@ -19,15 +19,17 @@ export class LoginComponent {
   isLoading: boolean = false;
 
   constructor(private readonly authService: AuthService, private readonly destroyRef: DestroyRef, 
-    private readonly router: Router, private readonly toastService: ToastService){}
+    private readonly router: Router, private readonly toastService: ToastService,
+    private route: ActivatedRoute){}
 
   onSubmit() {
     this.isLoading = true;
     const subscription = this.authService.login(<string>this.signInForm.value.email, <string>this.signInForm.value.password)
       .subscribe({
         next: () => {
+          const returnUrl = this.route.snapshot.queryParamMap.get("returnUrl") || '/';
           this.isLoading = false;
-          this.router.navigate(["/"])
+          this.router.navigate([returnUrl])
         },
         error: (error:any) => { 
           this.isLoading = false; 
